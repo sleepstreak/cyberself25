@@ -1,0 +1,256 @@
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Shield, Clock, CheckCircle, XCircle, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
+import { Badge } from '@/components/ui/badge';
+import { toast } from 'sonner';
+import { questionBank } from '@/data/questions';
+import { Domain, Question, UserResponse } from '@/types/assessment';
+import { AdaptiveEngine } from '@/utils/adaptiveEngine';
+
+const QUESTIONS_PER_DOMAIN = 10;
+
+const Assessment = () => {
+  const navigate = useNavigate();
+  const [currentDomainIndex, setCurrentDomainIndex] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [startTime, setStartTime] = useState<Date>(new Date());
+  const [responses, setResponses] = useState<UserResponse[]>([]);
+  const [selectedDomains, setSelectedDomains] = useState<Domain[]>([]);
+  const [engine] = useState(new AdaptiveEngine());
+  const [totalXP, setTotalXP] = useState(0);
+
+  useEffect(() => {
+    // Load session data
+    const sessionData = localStorage.getItem('cyberself_session');
+    if (!sessionData) {
+      navigate('/register');
+      return;
+    }
+
+    const session = JSON.parse(sessionData);
+    if (!session.selectedDomains || session.selectedDomains.length === 0) {
+      navigate('/domains');
+      return;
+    }
+
+    setSelectedDomains(session.selectedDomains);
+    loadNextQuestion(session.selectedDomains[0]);
+  }, []);
+
+  const loadNextQuestion = (domain: Domain) => {
+    const nextQuestion = engine.getNextQuestion(domain, questionBank);
+    if (nextQuestion) {
+      setCurrentQuestion(nextQuestion);
+      setStartTime(new Date());
+      setSelectedAnswer(null);
+      setShowFeedback(false);
+    } else {
+      // Move to next domain or finish
+      moveToNextDomain();
+    }
+  };
+
+  const handleAnswerSelect = (answerIndex: number) => {
+    if (!showFeedback) {
+      setSelectedAnswer(answerIndex);
+    }
+  };
+
+  const handleSubmitAnswer = () => {
+    if (selectedAnswer === null || !currentQuestion) return;
+
+    const responseTime = (new Date().getTime() - startTime.getTime()) / 1000;
+    const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
+
+    const response: UserResponse = {
+      questionId: currentQuestion.id,
+      selectedAnswer,
+      isCorrect,
+      responseTime,
+      timestamp: new Date(),
+    };
+
+    setResponses((prev) => [...prev, response]);
+    engine.updateDifficulty(isCorrect, responseTime);
+
+    // Award XP
+    const xpEarned = isCorrect ? (currentQuestion.difficulty === 'advanced' ? 15 : currentQuestion.difficulty === 'intermediate' ? 10 : 5) : 0;
+    setTotalXP((prev) => prev + xpEarned);
+
+    setShowFeedback(true);
+
+    if (isCorrect) {
+      toast.success(`Correct! +${xpEarned} XP`);
+    }
+  };
+
+  const handleNextQuestion = () => {
+    if (currentQuestionIndex + 1 >= QUESTIONS_PER_DOMAIN) {
+      moveToNextDomain();
+    } else {
+      setCurrentQuestionIndex((prev) => prev + 1);
+      loadNextQuestion(selectedDomains[currentDomainIndex]);
+    }
+  };
+
+  const moveToNextDomain = () => {
+    if (currentDomainIndex + 1 >= selectedDomains.length) {
+      // Assessment complete
+      finishAssessment();
+    } else {
+      setCurrentDomainIndex((prev) => prev + 1);
+      setCurrentQuestionIndex(0);
+      engine.reset();
+      loadNextQuestion(selectedDomains[currentDomainIndex + 1]);
+    }
+  };
+
+  const finishAssessment = () => {
+    // Save results to localStorage
+    const sessionData = localStorage.getItem('cyberself_session');
+    if (sessionData) {
+      const session = JSON.parse(sessionData);
+      session.responses = responses;
+      session.totalXP = totalXP;
+      session.endTime = new Date().toISOString();
+      localStorage.setItem('cyberself_session', JSON.stringify(session));
+    }
+
+    toast.success('Assessment Complete!');
+    navigate('/results');
+  };
+
+  if (!currentQuestion) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <Shield className="w-16 h-16 text-primary mx-auto mb-4 animate-pulse" />
+          <p className="text-lg text-muted-foreground">Loading questions...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const totalQuestions = selectedDomains.length * QUESTIONS_PER_DOMAIN;
+  const currentQuestionNumber = currentDomainIndex * QUESTIONS_PER_DOMAIN + currentQuestionIndex + 1;
+  const progress = (currentQuestionNumber / totalQuestions) * 100;
+
+  return (
+    <div className="min-h-screen bg-background py-8 px-4">
+      <div className="container mx-auto max-w-4xl">
+        {/* Header */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Shield className="w-6 h-6 text-primary" />
+              <span className="font-bold">CyberSelf</span>
+            </div>
+            <Badge variant="secondary" className="text-sm">
+              {totalXP} XP
+            </Badge>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-sm">
+              <span className="font-medium">
+                Question {currentQuestionNumber} of {totalQuestions}
+              </span>
+              <span className="text-muted-foreground">
+                Domain: {selectedDomains[currentDomainIndex].replace('-', ' ')}
+              </span>
+            </div>
+            <Progress value={progress} className="h-2" />
+          </div>
+        </div>
+
+        {/* Question Card */}
+        <Card className="shadow-elevation mb-6">
+          <CardContent className="p-8">
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-4">
+                <Badge variant="outline">{currentQuestion.difficulty}</Badge>
+                <Badge variant="secondary">{currentQuestion.type}</Badge>
+              </div>
+              <h2 className="text-2xl font-semibold mb-2">{currentQuestion.prompt}</h2>
+            </div>
+
+            <div className="space-y-3">
+              {currentQuestion.options.map((option, index) => {
+                const isSelected = selectedAnswer === index;
+                const isCorrect = index === currentQuestion.correctAnswer;
+                const showCorrect = showFeedback && isCorrect;
+                const showIncorrect = showFeedback && isSelected && !isCorrect;
+
+                return (
+                  <button
+                    key={index}
+                    onClick={() => handleAnswerSelect(index)}
+                    disabled={showFeedback}
+                    className={`w-full text-left p-4 rounded-lg border-2 transition-smooth ${
+                      showCorrect
+                        ? 'border-success bg-success/10'
+                        : showIncorrect
+                        ? 'border-destructive bg-destructive/10'
+                        : isSelected
+                        ? 'border-primary bg-primary/5'
+                        : 'border-border hover:border-primary/50 hover:bg-muted/50'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="flex-1">{option}</span>
+                      {showCorrect && <CheckCircle className="w-5 h-5 text-success" />}
+                      {showIncorrect && <XCircle className="w-5 h-5 text-destructive" />}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {showFeedback && currentQuestion.explanation && (
+              <div className="mt-6 p-4 bg-muted/30 rounded-lg">
+                <p className="text-sm font-medium mb-1">Explanation:</p>
+                <p className="text-sm text-muted-foreground">{currentQuestion.explanation}</p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Actions */}
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Clock className="w-4 h-4" />
+            <span>Take your time</span>
+          </div>
+
+          {!showFeedback ? (
+            <Button
+              size="lg"
+              variant="hero"
+              onClick={handleSubmitAnswer}
+              disabled={selectedAnswer === null}
+            >
+              Submit Answer
+            </Button>
+          ) : (
+            <Button
+              size="lg"
+              variant="hero"
+              onClick={handleNextQuestion}
+            >
+              Next Question
+              <ChevronRight className="ml-2 w-5 h-5" />
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Assessment;
