@@ -2,6 +2,7 @@ import { Home, LayoutDashboard } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { LanguageSelector } from './LanguageSelector';
 
 export const Navigation = () => {
   const location = useLocation();
@@ -12,6 +13,7 @@ export const Navigation = () => {
 
   return (
     <div className="fixed top-4 right-4 z-50 flex gap-2 animate-fade-in">
+      <LanguageSelector />
       {!isHome && (
         <Link to="/">
           <Button
