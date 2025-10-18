@@ -6,6 +6,8 @@ export class AdaptiveEngine {
   private consecutiveCorrect = 0;
   private consecutiveIncorrect = 0;
   private usedQuestionIds: Set<string> = new Set();
+  private domainPerformance: Map<string, { correct: number; total: number; avgTime: number }> = new Map();
+  private recentResponses: { isCorrect: boolean; responseTime: number; confidence: number }[] = [];
 
   getNextQuestion(domain: Domain, questions: Question[]): Question | null {
     // Filter questions by current difficulty and exclude used questions
@@ -35,13 +37,35 @@ export class AdaptiveEngine {
     return selectedQuestion;
   }
 
-  updateDifficulty(isCorrect: boolean, responseTime: number): void {
+  updateDifficulty(isCorrect: boolean, responseTime: number, domain?: string): void {
+    const confidence = this.calculateConfidenceMultiplier(responseTime);
+    
+    // Track recent performance for pattern analysis
+    this.recentResponses.push({ isCorrect, responseTime, confidence });
+    if (this.recentResponses.length > 5) {
+      this.recentResponses.shift();
+    }
+
+    // Update domain-specific performance
+    if (domain) {
+      const perf = this.domainPerformance.get(domain) || { correct: 0, total: 0, avgTime: 0 };
+      perf.total++;
+      if (isCorrect) perf.correct++;
+      perf.avgTime = (perf.avgTime * (perf.total - 1) + responseTime) / perf.total;
+      this.domainPerformance.set(domain, perf);
+    }
+
+    // Calculate weighted performance score
+    const recentAccuracy = this.recentResponses.filter(r => r.isCorrect).length / this.recentResponses.length;
+    const avgConfidence = this.recentResponses.reduce((sum, r) => sum + r.confidence, 0) / this.recentResponses.length;
+    const performanceScore = recentAccuracy * avgConfidence;
+
     if (isCorrect) {
       this.consecutiveCorrect++;
       this.consecutiveIncorrect = 0;
 
-      // Increase difficulty after 3 consecutive correct answers
-      if (this.consecutiveCorrect >= 3 && this.currentDifficulty !== 'advanced') {
+      // Increase difficulty based on performance score and confidence
+      if (this.consecutiveCorrect >= 2 && performanceScore > 0.8 && confidence >= 1.0 && this.currentDifficulty !== 'advanced') {
         if (this.currentDifficulty === 'beginner') {
           this.currentDifficulty = 'intermediate';
         } else if (this.currentDifficulty === 'intermediate') {
@@ -53,8 +77,8 @@ export class AdaptiveEngine {
       this.consecutiveIncorrect++;
       this.consecutiveCorrect = 0;
 
-      // Decrease difficulty after 2 consecutive incorrect answers
-      if (this.consecutiveIncorrect >= 2 && this.currentDifficulty !== 'beginner') {
+      // Decrease difficulty based on performance patterns
+      if (this.consecutiveIncorrect >= 2 && performanceScore < 0.4 && this.currentDifficulty !== 'beginner') {
         if (this.currentDifficulty === 'advanced') {
           this.currentDifficulty = 'intermediate';
         } else if (this.currentDifficulty === 'intermediate') {
@@ -63,6 +87,29 @@ export class AdaptiveEngine {
         this.consecutiveIncorrect = 0;
       }
     }
+  }
+
+  shouldShowHint(): boolean {
+    // Show hint after 2 consecutive incorrect or if user is taking too long
+    return this.consecutiveIncorrect >= 2 || 
+           (this.recentResponses.length > 0 && 
+            this.recentResponses[this.recentResponses.length - 1].responseTime > 45);
+  }
+
+  getPerformanceSnapshot(domain?: string): {
+    accuracy: number;
+    avgResponseTime: number;
+    currentLevel: DifficultyLevel;
+  } | null {
+    if (domain && this.domainPerformance.has(domain)) {
+      const perf = this.domainPerformance.get(domain)!;
+      return {
+        accuracy: Math.round((perf.correct / perf.total) * 100),
+        avgResponseTime: Math.round(perf.avgTime),
+        currentLevel: this.currentDifficulty,
+      };
+    }
+    return null;
   }
 
   calculateConfidenceMultiplier(responseTime: number): number {
@@ -89,6 +136,8 @@ export class AdaptiveEngine {
     this.consecutiveCorrect = 0;
     this.consecutiveIncorrect = 0;
     this.usedQuestionIds.clear();
+    this.domainPerformance.clear();
+    this.recentResponses = [];
   }
 }
 
