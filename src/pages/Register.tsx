@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shield, Globe } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -27,13 +28,13 @@ const languages = [
 
 const Register = () => {
   const navigate = useNavigate();
+  const { t, language: currentLang, setLanguage: setCurrentLang } = useLanguage();
   const [nickname, setNickname] = useState('');
-  const [language, setLanguage] = useState('en');
   const [consent, setConsent] = useState(false);
 
   const handleContinue = () => {
     if (!nickname.trim()) {
-      toast.error('Please enter a nickname');
+      toast.error(t('enterNickname'));
       return;
     }
     if (!consent) {
@@ -44,12 +45,12 @@ const Register = () => {
     // Store user session data
     const session = {
       nickname: nickname.trim(),
-      language,
+      language: currentLang,
       startTime: new Date().toISOString(),
     };
     localStorage.setItem('cyberself_session', JSON.stringify(session));
     
-    toast.success(`Welcome, ${nickname}!`);
+    toast.success(`${t('success')}, ${nickname}!`);
     navigate('/domains');
   };
 
@@ -61,9 +62,9 @@ const Register = () => {
             <Shield className="w-8 h-8 text-primary" />
             <span className="text-2xl font-bold">CyberSelf</span>
           </div>
-          <h1 className="text-3xl font-bold mb-2">Get Started</h1>
+          <h1 className="text-3xl font-bold mb-2">{t('registerTitle')}</h1>
           <p className="text-muted-foreground">
-            Begin your cybersecurity skills assessment
+            {t('registerSubtitle')}
           </p>
         </div>
 
@@ -76,10 +77,10 @@ const Register = () => {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="nickname">Nickname</Label>
+              <Label htmlFor="nickname">{t('nickname')}</Label>
               <Input
                 id="nickname"
-                placeholder="Enter your nickname"
+                placeholder={t('enterNickname')}
                 value={nickname}
                 onChange={(e) => setNickname(e.target.value)}
                 maxLength={20}
@@ -87,27 +88,6 @@ const Register = () => {
               <p className="text-xs text-muted-foreground">
                 This will be used on the leaderboard (max 20 characters)
               </p>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="language">
-                <div className="flex items-center gap-2">
-                  <Globe className="w-4 h-4" />
-                  Language
-                </div>
-              </Label>
-              <Select value={language} onValueChange={setLanguage}>
-                <SelectTrigger id="language">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {languages.map((lang) => (
-                    <SelectItem key={lang.code} value={lang.code}>
-                      {lang.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
             </div>
 
             <div className="flex items-start gap-3">
@@ -135,7 +115,7 @@ const Register = () => {
               className="w-full"
               onClick={handleContinue}
             >
-              Continue to Domain Selection
+              {t('continue')}
             </Button>
           </CardContent>
         </Card>
@@ -145,7 +125,7 @@ const Register = () => {
             variant="ghost"
             onClick={() => navigate('/')}
           >
-            Back to Home
+            {t('back')}
           </Button>
         </div>
       </div>

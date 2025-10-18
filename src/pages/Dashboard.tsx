@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shield } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { DomainScore } from '@/types/assessment';
 import { calculateDomainScore } from '@/utils/adaptiveEngine';
 import { generateSkillTree } from '@/utils/skillTreeGenerator';
@@ -15,6 +16,7 @@ import { ExportPanel } from '@/components/dashboard/ExportPanel';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [nickname, setNickname] = useState('');
   const [totalXP, setTotalXP] = useState(0);
   const [domainScores, setDomainScores] = useState<DomainScore[]>([]);

@@ -5,6 +5,7 @@ import { Progress } from '@/components/ui/progress';
 import { DomainScore } from '@/types/assessment';
 import { domains } from '@/data/domains';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface OverviewPanelProps {
   totalXP: number;
@@ -14,6 +15,8 @@ interface OverviewPanelProps {
 }
 
 export const OverviewPanel = ({ totalXP, overallScore, badges, domainScores }: OverviewPanelProps) => {
+  const { t } = useLanguage();
+  
   const getDomainName = (domain: string) => {
     const info = domains.find((d) => d.id === domain);
     return info?.name || domain;
@@ -30,7 +33,7 @@ export const OverviewPanel = ({ totalXP, overallScore, badges, domainScores }: O
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Trophy className="w-5 h-5 text-primary" />
-          Progress Overview
+          {t('overview')}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -38,15 +41,15 @@ export const OverviewPanel = ({ totalXP, overallScore, badges, domainScores }: O
         <div className="grid grid-cols-3 gap-4">
           <div className="text-center p-4 rounded-lg bg-muted/30">
             <div className="text-3xl font-bold text-primary">{totalXP}</div>
-            <div className="text-sm text-muted-foreground">Total XP</div>
+            <div className="text-sm text-muted-foreground">{t('totalXP')}</div>
           </div>
           <div className="text-center p-4 rounded-lg bg-muted/30">
             <div className="text-3xl font-bold text-primary">{overallScore}</div>
-            <div className="text-sm text-muted-foreground">Overall Score</div>
+            <div className="text-sm text-muted-foreground">{t('score')}</div>
           </div>
           <div className="text-center p-4 rounded-lg bg-muted/30">
             <div className="text-3xl font-bold text-primary">{badges.length}</div>
-            <div className="text-sm text-muted-foreground">Badges Earned</div>
+            <div className="text-sm text-muted-foreground">{t('badgesEarned')}</div>
           </div>
         </div>
 
@@ -54,7 +57,7 @@ export const OverviewPanel = ({ totalXP, overallScore, badges, domainScores }: O
         <div>
           <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
             <Target className="w-4 h-4" />
-            Your Achievements
+            {t('badges')}
           </h4>
           <div className="flex flex-wrap gap-2">
             {badges.map((badge, index) => (

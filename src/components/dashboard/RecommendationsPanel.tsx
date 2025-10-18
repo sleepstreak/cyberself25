@@ -5,6 +5,7 @@ import { DomainScore } from '@/types/assessment';
 import { domains } from '@/data/domains';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface RecommendationsPanelProps {
   domainScores: DomainScore[];
@@ -12,6 +13,7 @@ interface RecommendationsPanelProps {
 
 export const RecommendationsPanel = ({ domainScores }: RecommendationsPanelProps) => {
   const [filter, setFilter] = useState<'all' | 'high' | 'medium' | 'low'>('all');
+  const { t } = useLanguage();
 
   const getDomainName = (domain: string) => {
     const info = domains.find((d) => d.id === domain);
@@ -44,7 +46,7 @@ export const RecommendationsPanel = ({ domainScores }: RecommendationsPanelProps
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <BookOpen className="w-5 h-5 text-primary" />
-          Personalized Learning Path
+          {t('recommendationsTitle')}
         </CardTitle>
         <div className="flex gap-2 mt-2">
           <Button
@@ -52,28 +54,28 @@ export const RecommendationsPanel = ({ domainScores }: RecommendationsPanelProps
             size="sm"
             onClick={() => setFilter('all')}
           >
-            All
+            {t('allDomains')}
           </Button>
           <Button
             variant={filter === 'high' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setFilter('high')}
           >
-            High Priority
+            {t('highPriority')}
           </Button>
           <Button
             variant={filter === 'medium' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setFilter('medium')}
           >
-            Medium
+            {t('mediumPriority')}
           </Button>
           <Button
             variant={filter === 'low' ? 'default' : 'outline'}
             size="sm"
             onClick={() => setFilter('low')}
           >
-            Low
+            {t('lowPriority')}
           </Button>
         </div>
       </CardHeader>

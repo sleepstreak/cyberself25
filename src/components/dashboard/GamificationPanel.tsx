@@ -2,6 +2,7 @@ import { Sparkles, Award } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface GamificationPanelProps {
   totalXP: number;
@@ -9,6 +10,7 @@ interface GamificationPanelProps {
 }
 
 export const GamificationPanel = ({ totalXP, badges }: GamificationPanelProps) => {
+  const { t } = useLanguage();
   // Calculate level and progress
   const level = Math.floor(totalXP / 100) + 1;
   const xpToNextLevel = (level * 100) - totalXP;
@@ -23,15 +25,15 @@ export const GamificationPanel = ({ totalXP, badges }: GamificationPanelProps) =
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-primary" />
-          Achievements & Progress
+          {t('gamification')}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Level Display */}
         <div className="flex items-center justify-between p-4 rounded-lg gradient-hero text-white">
           <div>
-            <div className="text-2xl font-bold">Level {level}</div>
-            <div className="text-sm opacity-90">{xpToNextLevel} XP to next level</div>
+            <div className="text-2xl font-bold">{t('level')} {level}</div>
+            <div className="text-sm opacity-90">{xpToNextLevel} {t('xp')} {t('nextLevelIn')}</div>
           </div>
           <Award className="w-12 h-12 animate-pulse-glow" />
         </div>
@@ -39,7 +41,7 @@ export const GamificationPanel = ({ totalXP, badges }: GamificationPanelProps) =
         {/* XP Progress */}
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span>Level Progress</span>
+            <span>{t('xpProgress')}</span>
             <span className="font-medium">{Math.round(progressToNextLevel)}%</span>
           </div>
           <Progress value={progressToNextLevel} className="h-3" />

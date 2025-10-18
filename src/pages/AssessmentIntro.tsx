@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { Shield, Brain, Timer, TrendingUp, Play } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 
 const AssessmentIntro = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
@@ -15,9 +17,9 @@ const AssessmentIntro = () => {
             <Shield className="w-8 h-8 text-primary" />
             <span className="text-2xl font-bold">CyberSelf</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Ready to Begin?</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">{t('assessmentIntroTitle')}</h1>
           <p className="text-lg text-muted-foreground">
-            Here's what to expect during your assessment
+            {t('assessmentIntroSubtitle')}
           </p>
         </div>
 
@@ -29,10 +31,9 @@ const AssessmentIntro = () => {
                   <Brain className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Adaptive Questions</h3>
+                  <h3 className="font-semibold mb-1">{t('adaptive')}</h3>
                   <p className="text-muted-foreground text-sm">
-                    Questions will adjust to your skill level in real-time. If you answer correctly, 
-                    questions become more challenging. If you struggle, they'll become easier.
+                    {t('adaptiveDesc')}
                   </p>
                 </div>
               </div>
@@ -42,10 +43,9 @@ const AssessmentIntro = () => {
                   <Timer className="w-6 h-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Timed Responses</h3>
+                  <h3 className="font-semibold mb-1">{t('timed')}</h3>
                   <p className="text-muted-foreground text-sm">
-                    Each question is timed. Your response speed affects your confidence score, 
-                    but accuracy matters more. Take your time to think through each answer.
+                    {t('timedDesc')}
                   </p>
                 </div>
               </div>
@@ -55,10 +55,9 @@ const AssessmentIntro = () => {
                   <TrendingUp className="w-6 h-6 text-success" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Immediate Feedback</h3>
+                  <h3 className="font-semibold mb-1">{t('comprehensive')}</h3>
                   <p className="text-muted-foreground text-sm">
-                    You'll receive instant feedback after each question, along with explanations 
-                    to help you learn from both correct and incorrect answers.
+                    {t('comprehensiveDesc')}
                   </p>
                 </div>
               </div>
@@ -79,7 +78,7 @@ const AssessmentIntro = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button variant="outline" onClick={() => navigate('/domains')}>
-            Back to Domains
+            {t('back')}
           </Button>
           <Button
             size="lg"
@@ -88,7 +87,7 @@ const AssessmentIntro = () => {
             className="min-w-[200px]"
           >
             <Play className="mr-2 w-5 h-5" />
-            Begin Assessment
+            {t('beginAssessment')}
           </Button>
         </div>
 

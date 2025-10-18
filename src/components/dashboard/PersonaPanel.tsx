@@ -2,18 +2,21 @@ import { User, TrendingUp, AlertTriangle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { PersonaProfile } from '@/types/persona';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface PersonaPanelProps {
   persona: PersonaProfile;
 }
 
 export const PersonaPanel = ({ persona }: PersonaPanelProps) => {
+  const { t } = useLanguage();
+  
   return (
     <Card className="shadow-elevation animate-fade-in">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <User className="w-5 h-5 text-primary" />
-          Your Cyber Persona
+          {t('yourPersona')}
         </CardTitle>
         <CardDescription>{persona.name}</CardDescription>
       </CardHeader>
@@ -27,7 +30,7 @@ export const PersonaPanel = ({ persona }: PersonaPanelProps) => {
         <div>
           <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-success" />
-            Strengths
+            {t('strengths')}
           </h4>
           <div className="space-y-1">
             {persona.strengths.map((strength, index) => (
@@ -42,7 +45,7 @@ export const PersonaPanel = ({ persona }: PersonaPanelProps) => {
         <div>
           <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-warning" />
-            Growth Areas
+            {t('growthAreas')}
           </h4>
           <div className="space-y-1">
             {persona.weaknesses.map((weakness, index) => (
@@ -55,7 +58,7 @@ export const PersonaPanel = ({ persona }: PersonaPanelProps) => {
         </div>
 
         <div className="pt-4 border-t">
-          <h4 className="text-sm font-semibold mb-2">Recommended Focus</h4>
+          <h4 className="text-sm font-semibold mb-2">{t('recommendedFocus')}</h4>
           <div className="flex flex-wrap gap-2">
             {persona.recommendedPath.map((path, index) => (
               <Badge key={index} variant="outline" className="bg-primary/10 text-primary border-primary">

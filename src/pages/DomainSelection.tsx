@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shield, Network, Code, ChevronRight, Check } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -16,6 +17,7 @@ const iconMap = {
 
 const DomainSelection = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [selectedDomains, setSelectedDomains] = useState<Domain[]>([]);
 
   const toggleDomain = (domainId: Domain) => {
@@ -28,7 +30,7 @@ const DomainSelection = () => {
 
   const handleContinue = () => {
     if (selectedDomains.length === 0) {
-      toast.error('Please select at least one domain');
+      toast.error(t('selectAtLeastOne'));
       return;
     }
 
@@ -51,10 +53,9 @@ const DomainSelection = () => {
             <Shield className="w-8 h-8 text-primary" />
             <span className="text-2xl font-bold">CyberSelf</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Choose Your Domains</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">{t('domainSelectionTitle')}</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Select one or more cybersecurity domains to assess. Each domain contains adaptive questions
-            tailored to your skill level.
+            {t('domainSelectionSubtitle')}
           </p>
         </div>
 
@@ -102,7 +103,7 @@ const DomainSelection = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button variant="outline" onClick={() => navigate('/register')}>
-            Back
+            {t('back')}
           </Button>
           <Button
             size="lg"
@@ -111,7 +112,7 @@ const DomainSelection = () => {
             disabled={selectedDomains.length === 0}
             className="min-w-[200px]"
           >
-            Continue
+            {t('continue')}
             <ChevronRight className="ml-2 w-5 h-5" />
           </Button>
         </div>

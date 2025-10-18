@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Shield, Trophy, Medal, TrendingUp, ArrowLeft } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -37,6 +38,7 @@ const getRankIcon = (rank: number) => {
 
 const Leaderboard = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background py-12 px-4">
@@ -45,11 +47,11 @@ const Leaderboard = () => {
         <div className="mb-8">
           <Button
             variant="ghost"
-            onClick={() => navigate('/results')}
+            onClick={() => navigate('/dashboard')}
             className="mb-4"
           >
             <ArrowLeft className="mr-2 w-4 h-4" />
-            Back to Results
+            {t('back')}
           </Button>
 
           <div className="text-center">
@@ -57,9 +59,9 @@ const Leaderboard = () => {
               <Shield className="w-8 h-8 text-primary" />
               <span className="text-2xl font-bold">CyberSelf</span>
             </div>
-            <h1 className="text-4xl font-bold mb-4">Global Leaderboard</h1>
+            <h1 className="text-4xl font-bold mb-4">{t('leaderboardTitle')}</h1>
             <p className="text-lg text-muted-foreground">
-              Compare your skills with cybersecurity learners across Europe
+              {t('leaderboardSubtitle')}
             </p>
           </div>
         </div>

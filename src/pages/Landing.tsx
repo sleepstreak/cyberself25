@@ -1,9 +1,11 @@
 import { Shield, TrendingUp, Award, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Landing = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background">
@@ -18,12 +20,11 @@ const Landing = () => {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Test Your Cyber Skills
+              {t('landingTitle')}
             </h1>
             
             <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-              Evaluate your cybersecurity knowledge with adaptive assessments, identify skill gaps, 
-              and receive personalized AI-powered recommendations to advance your career.
+              {t('landingDescription')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -33,7 +34,7 @@ const Landing = () => {
               onClick={() => navigate('/register')}
               className="bg-white text-white hover:bg-white/90 hover:shadow-xl"
             >
-              Start Assessment
+              {t('startAssessment')}
             </Button>
               <Button 
                 size="lg" 
@@ -43,7 +44,7 @@ const Landing = () => {
                 }}
                 className="border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:border-white/50"
               >
-                Learn More
+                {t('getStarted')}
               </Button>
             </div>
           </div>

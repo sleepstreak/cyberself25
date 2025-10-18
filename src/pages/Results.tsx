@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shield, Trophy, TrendingUp, Target, BookOpen, Award, ExternalLink } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -14,6 +15,7 @@ import { generateSkillTree } from '@/utils/skillTreeGenerator';
 
 const Results = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [nickname, setNickname] = useState('');
   const [totalXP, setTotalXP] = useState(0);
   const [domainScores, setDomainScores] = useState<DomainScore[]>([]);
@@ -135,16 +137,16 @@ const Results = () => {
             <Shield className="w-8 h-8 text-primary" />
             <span className="text-2xl font-bold">CyberSelf</span>
           </div>
-          <h1 className="text-4xl font-bold mb-4">Assessment Complete!</h1>
+          <h1 className="text-4xl font-bold mb-4">{t('resultsTitle')}</h1>
           <p className="text-lg text-muted-foreground">
-            Great work, {nickname}! Here are your results.
+            {t('resultsSubtitle')}
           </p>
         </div>
 
         {/* Overall Score */}
         <Card className="shadow-elevation mb-8 animate-fade-in">
           <CardHeader className="text-center pb-4">
-            <CardTitle className="text-2xl">Overall Score</CardTitle>
+            <CardTitle className="text-2xl">{t('score')}</CardTitle>
           </CardHeader>
           <CardContent className="text-center">
             <div className="inline-flex items-center justify-center w-40 h-40 rounded-full gradient-hero mb-6 shadow-glow animate-pulse-glow">
@@ -168,14 +170,14 @@ const Results = () => {
         {/* Skill Tree */}
         {skillTreeData.length > 0 && (
           <div className="mb-8 animate-fade-in">
-            <h2 className="text-2xl font-bold mb-6">Your Learning Path</h2>
+            <h2 className="text-2xl font-bold mb-6">{t('skillTree')}</h2>
             <SkillTree data={skillTreeData} />
           </div>
         )}
 
         {/* Domain Breakdown */}
         <div className="mb-8 animate-fade-in">
-          <h2 className="text-2xl font-bold mb-6">Domain Performance</h2>
+          <h2 className="text-2xl font-bold mb-6">{t('domainPerformance')}</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {domainScores.map((score, index) => (
               <Card 
@@ -215,7 +217,7 @@ const Results = () => {
 
         {/* Recommendations */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-6">Personalized Learning Path</h2>
+          <h2 className="text-2xl font-bold mb-6">{t('recommendationsTitle')}</h2>
           <div className="space-y-6">
             {recommendations.map((rec, index) => (
               <Card key={index} className="shadow-elevation">
@@ -285,9 +287,9 @@ const Results = () => {
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="outline" onClick={() => navigate('/leaderboard')}>
+          <Button variant="outline" onClick={() => navigate('/dashboard')}>
             <TrendingUp className="mr-2 w-4 h-4" />
-            View Leaderboard
+            {t('viewDashboard')}
           </Button>
           <Button
             variant="hero"
@@ -297,7 +299,7 @@ const Results = () => {
               navigate('/');
             }}
           >
-            Start New Assessment
+            {t('retakeAssessment')}
           </Button>
         </div>
       </div>
