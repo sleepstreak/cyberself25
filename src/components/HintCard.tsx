@@ -1,9 +1,11 @@
-import { Lightbulb } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Domain } from "@/types/assessment";
+import { AlertCircle, Lightbulb, X } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Domain } from '@/types/assessment';
 
 interface HintCardProps {
   domain: Domain;
+  onDismiss?: () => void;
 }
 
 const domainHints: Record<Domain, string[]> = {
@@ -24,7 +26,7 @@ const domainHints: Record<Domain, string[]> = {
   ],
 };
 
-export const HintCard = ({ domain }: HintCardProps) => {
+export const HintCard = ({ domain, onDismiss }: HintCardProps) => {
   const hints = domainHints[domain];
   const randomHint = hints[Math.floor(Math.random() * hints.length)];
 
@@ -32,11 +34,24 @@ export const HintCard = ({ domain }: HintCardProps) => {
     <Card className="bg-accent/10 border-accent animate-fade-in">
       <CardContent className="pt-6">
         <div className="flex gap-3">
-          <Lightbulb className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-          <div className="space-y-1">
-            <p className="text-sm font-medium text-foreground">Hint</p>
+          <Lightbulb className="h-5 w-5 text-accent flex-shrink-0 mt-0.5 animate-pulse" />
+          <div className="flex-1 space-y-1">
+            <p className="text-sm font-medium text-foreground flex items-center gap-2">
+              <AlertCircle className="w-4 h-4" />
+              Hint
+            </p>
             <p className="text-sm text-muted-foreground">{randomHint}</p>
           </div>
+          {onDismiss && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onDismiss}
+              className="h-6 w-6 flex-shrink-0"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          )}
         </div>
       </CardContent>
     </Card>

@@ -8,6 +8,9 @@ import { Progress } from '@/components/ui/progress';
 import { Domain, DomainScore, Recommendation } from '@/types/assessment';
 import { calculateDomainScore } from '@/utils/adaptiveEngine';
 import { domains } from '@/data/domains';
+import { SkillTree } from '@/components/SkillTree';
+import { AnimatedBadge, BadgeUnlock } from '@/components/AnimatedBadge';
+import { generateSkillTree } from '@/utils/skillTreeGenerator';
 
 const Results = () => {
   const navigate = useNavigate();
@@ -17,6 +20,8 @@ const Results = () => {
   const [overallScore, setOverallScore] = useState(0);
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [badges, setBadges] = useState<string[]>([]);
+  const [showBadgeUnlock, setShowBadgeUnlock] = useState<string | null>(null);
+  const [skillTreeData, setSkillTreeData] = useState<any[]>([]);
 
   useEffect(() => {
     const sessionData = localStorage.getItem('cyberself_session');
@@ -101,6 +106,15 @@ const Results = () => {
 
     if (session.totalXP >= 100) earnedBadges.push('XP Master');
     setBadges(earnedBadges);
+
+    // Show badge unlock animation
+    if (earnedBadges.length > 0) {
+      setTimeout(() => setShowBadgeUnlock(earnedBadges[0]), 1000);
+    }
+
+    // Generate skill tree
+    const tree = generateSkillTree(scores);
+    setSkillTreeData(tree);
   }, []);
 
   const getDomainName = (domain: Domain): string => {
@@ -110,6 +124,10 @@ const Results = () => {
 
   return (
     <div className="min-h-screen bg-background py-12 px-4">
+      {showBadgeUnlock && (
+        <BadgeUnlock badge={showBadgeUnlock} onClose={() => setShowBadgeUnlock(null)} />
+      )}
+      
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-12">
@@ -124,15 +142,15 @@ const Results = () => {
         </div>
 
         {/* Overall Score */}
-        <Card className="shadow-elevation mb-8">
+        <Card className="shadow-elevation mb-8 animate-fade-in">
           <CardHeader className="text-center pb-4">
             <CardTitle className="text-2xl">Overall Score</CardTitle>
           </CardHeader>
           <CardContent className="text-center">
-            <div className="inline-flex items-center justify-center w-40 h-40 rounded-full gradient-hero mb-6 shadow-glow">
+            <div className="inline-flex items-center justify-center w-40 h-40 rounded-full gradient-hero mb-6 shadow-glow animate-pulse-glow">
               <div className="w-36 h-36 rounded-full bg-background flex items-center justify-center">
                 <div>
-                  <div className="text-5xl font-bold text-primary">{overallScore}</div>
+                  <div className="text-5xl font-bold text-primary animate-scale-in">{overallScore}</div>
                   <div className="text-sm text-muted-foreground">out of 100</div>
                 </div>
               </div>
@@ -140,25 +158,31 @@ const Results = () => {
 
             <div className="flex flex-wrap justify-center gap-3 mb-6">
               {badges.map((badge, index) => (
-                <Badge key={index} variant="secondary" className="text-sm px-4 py-2">
-                  <Award className="w-4 h-4 mr-2" />
-                  {badge}
-                </Badge>
+                <AnimatedBadge key={index} badge={badge} delay={index * 200} />
               ))}
-              <Badge variant="secondary" className="text-sm px-4 py-2">
-                <Trophy className="w-4 h-4 mr-2" />
-                {totalXP} XP Earned
-              </Badge>
+              <AnimatedBadge badge={`${totalXP} XP Earned`} delay={badges.length * 200} />
             </div>
           </CardContent>
         </Card>
 
+        {/* Skill Tree */}
+        {skillTreeData.length > 0 && (
+          <div className="mb-8 animate-fade-in">
+            <h2 className="text-2xl font-bold mb-6">Your Learning Path</h2>
+            <SkillTree data={skillTreeData} />
+          </div>
+        )}
+
         {/* Domain Breakdown */}
-        <div className="mb-8">
+        <div className="mb-8 animate-fade-in">
           <h2 className="text-2xl font-bold mb-6">Domain Performance</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {domainScores.map((score) => (
-              <Card key={score.domain} className="shadow-elevation">
+            {domainScores.map((score, index) => (
+              <Card 
+                key={score.domain} 
+                className="shadow-elevation hover-scale transition-smooth animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
                 <CardHeader>
                   <CardTitle className="text-lg">{getDomainName(score.domain)}</CardTitle>
                   <CardDescription>

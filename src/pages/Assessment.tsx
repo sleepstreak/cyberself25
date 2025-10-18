@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Shield, Clock, CheckCircle, XCircle, ChevronRight } from 'lucide-react';
+import { Shield, Clock, CheckCircle, XCircle, ChevronRight, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -9,6 +9,9 @@ import { toast } from 'sonner';
 import { questionBank } from '@/data/questions';
 import { Domain, Question, UserResponse } from '@/types/assessment';
 import { AdaptiveEngine } from '@/utils/adaptiveEngine';
+import { ProgressSnapshot } from '@/components/ProgressSnapshot';
+import { HintCard } from '@/components/HintCard';
+import { XPAnimation } from '@/components/XPAnimation';
 
 const QUESTIONS_PER_DOMAIN = 10;
 
@@ -24,6 +27,9 @@ const Assessment = () => {
   const [selectedDomains, setSelectedDomains] = useState<Domain[]>([]);
   const [engine] = useState(new AdaptiveEngine());
   const [totalXP, setTotalXP] = useState(0);
+  const [showProgressSnapshot, setShowProgressSnapshot] = useState(false);
+  const [showHint, setShowHint] = useState(false);
+  const [xpToShow, setXpToShow] = useState<number | null>(null);
 
   useEffect(() => {
     // Load session data
@@ -84,13 +90,26 @@ const Assessment = () => {
     setTotalXP((prev) => prev + xpEarned);
 
     setShowFeedback(true);
+    setShowHint(false);
 
     if (isCorrect) {
+      setXpToShow(xpEarned);
       toast.success(`Correct! +${xpEarned} XP`);
+    }
+
+    // Show progress snapshot every 5 questions
+    if ((currentQuestionIndex + 1) % 5 === 0 && currentQuestionIndex + 1 < QUESTIONS_PER_DOMAIN) {
+      setTimeout(() => setShowProgressSnapshot(true), 1500);
+    }
+
+    // Check if hint should be shown
+    if (!isCorrect && engine.shouldShowHint()) {
+      setTimeout(() => setShowHint(true), 500);
     }
   };
 
   const handleNextQuestion = () => {
+    setShowProgressSnapshot(false);
     if (currentQuestionIndex + 1 >= QUESTIONS_PER_DOMAIN) {
       moveToNextDomain();
     } else {
@@ -141,8 +160,12 @@ const Assessment = () => {
   const currentQuestionNumber = currentDomainIndex * QUESTIONS_PER_DOMAIN + currentQuestionIndex + 1;
   const progress = (currentQuestionNumber / totalQuestions) * 100;
 
+  const performanceSnapshot = engine.getPerformanceSnapshot();
+
   return (
     <div className="min-h-screen bg-background py-8 px-4">
+      {xpToShow && <XPAnimation amount={xpToShow} onComplete={() => setXpToShow(null)} />}
+      
       <div className="container mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-8">
@@ -178,6 +201,14 @@ const Assessment = () => {
                 <Badge variant="secondary">{currentQuestion.type}</Badge>
               </div>
               <h2 className="text-2xl font-semibold mb-2">{currentQuestion.prompt}</h2>
+            </div>
+
+            {/* Difficulty Indicator */}
+            <div className="flex items-center gap-2 mb-4">
+              <Zap className="w-4 h-4 text-warning animate-pulse" />
+              <span className="text-sm text-muted-foreground">
+                Difficulty adapting to your performance
+              </span>
             </div>
 
             <div className="space-y-3">
@@ -220,6 +251,27 @@ const Assessment = () => {
             )}
           </CardContent>
         </Card>
+
+        {/* Hint Card */}
+        {showHint && !showFeedback && (
+          <HintCard 
+            domain={selectedDomains[currentDomainIndex]}
+            onDismiss={() => setShowHint(false)}
+          />
+        )}
+
+        {/* Progress Snapshot */}
+        {showProgressSnapshot && (
+          <div className="mb-6">
+            <ProgressSnapshot
+              accuracy={performanceSnapshot.accuracy}
+              avgResponseTime={performanceSnapshot.avgResponseTime}
+              currentLevel={performanceSnapshot.currentLevel}
+              questionsAnswered={currentQuestionIndex + 1}
+              totalQuestions={QUESTIONS_PER_DOMAIN}
+            />
+          </div>
+        )}
 
         {/* Actions */}
         <div className="flex justify-between items-center">

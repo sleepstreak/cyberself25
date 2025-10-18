@@ -82,11 +82,12 @@ const Leaderboard = () => {
                   {mockLeaderboard.map((entry) => (
                     <div
                       key={entry.rank}
-                      className={`flex items-center gap-4 p-4 rounded-lg transition-smooth ${
+                      className={`flex items-center gap-4 p-4 rounded-lg transition-smooth animate-fade-in hover-scale ${
                         entry.rank <= 3
-                          ? 'bg-gradient-to-r from-primary/5 to-transparent border border-primary/20'
+                          ? 'bg-gradient-to-r from-primary/5 to-transparent border border-primary/20 shadow-glow'
                           : 'bg-muted/30 hover:bg-muted/50'
                       }`}
+                      style={{ animationDelay: `${entry.rank * 50}ms` }}
                     >
                       <div className="w-10 flex items-center justify-center">
                         {getRankIcon(entry.rank)}
