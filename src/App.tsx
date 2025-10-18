@@ -10,6 +10,7 @@ import DomainSelection from "./pages/DomainSelection";
 import AssessmentIntro from "./pages/AssessmentIntro";
 import Assessment from "./pages/Assessment";
 import Results from "./pages/Results";
+import Dashboard from "./pages/Dashboard";
 import Leaderboard from "./pages/Leaderboard";
 import NotFound from "./pages/NotFound";
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/assessment-intro" element={<AssessmentIntro />} />
           <Route path="/assessment" element={<Assessment />} />
           <Route path="/results" element={<Results />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

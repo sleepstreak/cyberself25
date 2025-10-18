@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 export const Navigation = () => {
   const location = useLocation();
   const isHome = location.pathname === '/';
-  const isResults = location.pathname === '/results';
+  const isDashboard = location.pathname === '/dashboard';
 
   if (isHome) return null;
 
@@ -23,8 +23,8 @@ export const Navigation = () => {
           </Button>
         </Link>
       )}
-      {!isResults && location.pathname !== '/leaderboard' && (
-        <Link to="/results">
+      {!isDashboard && location.pathname !== '/leaderboard' && (
+        <Link to="/dashboard">
           <Button
             variant="secondary"
             size="icon"
