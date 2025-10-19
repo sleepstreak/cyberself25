@@ -7,7 +7,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { questionBank } from '@/data/questions';
 import { Domain, Question, UserResponse } from '@/types/assessment';
 import { AdaptiveEngine } from '@/utils/adaptiveEngine';
 import { ProgressSnapshot } from '@/components/ProgressSnapshot';
@@ -52,7 +51,61 @@ const Assessment = () => {
   }, []);
 
   const loadNextQuestion = (domain: Domain) => {
-    const nextQuestion = engine.getNextQuestion(domain, questionBank);
+    // Create translated question bank dynamically
+    const translatedBank: Question[] = [
+      // Cyber Hygiene questions
+      { id: 'ch-b1', domain: 'cyber-hygiene', difficulty: 'beginner', type: 'multiple-choice',
+        prompt: t('qChB1Prompt'), options: [t('qChB1Opt0'), t('qChB1Opt1'), t('qChB1Opt2'), t('qChB1Opt3')],
+        correctAnswer: 0, explanation: t('qChB1Expl') },
+      { id: 'ch-b2', domain: 'cyber-hygiene', difficulty: 'beginner', type: 'multiple-choice',
+        prompt: t('qChB2Prompt'), options: [t('qChB2Opt0'), t('qChB2Opt1'), t('qChB2Opt2'), t('qChB2Opt3')],
+        correctAnswer: 2, explanation: t('qChB2Expl') },
+      { id: 'ch-b3', domain: 'cyber-hygiene', difficulty: 'beginner', type: 'scenario',
+        prompt: t('qChB3Prompt'), options: [t('qChB3Opt0'), t('qChB3Opt1'), t('qChB3Opt2'), t('qChB3Opt3')],
+        correctAnswer: 1, explanation: t('qChB3Expl') },
+      // Network Security
+      { id: 'ns-b1', domain: 'network-security', difficulty: 'beginner', type: 'multiple-choice',
+        prompt: t('qNsB1Prompt'), options: [t('qNsB1Opt0'), t('qNsB1Opt1'), t('qNsB1Opt2'), t('qNsB1Opt3')],
+        correctAnswer: 1, explanation: t('qNsB1Expl') },
+      { id: 'ns-b2', domain: 'network-security', difficulty: 'beginner', type: 'multiple-choice',
+        prompt: t('qNsB2Prompt'), options: [t('qNsB2Opt0'), t('qNsB2Opt1'), t('qNsB2Opt2'), t('qNsB2Opt3')],
+        correctAnswer: 2, explanation: t('qNsB2Expl') },
+      { id: 'ns-i1', domain: 'network-security', difficulty: 'intermediate', type: 'scenario',
+        prompt: t('qNsI1Prompt'), options: [t('qNsI1Opt0'), t('qNsI1Opt1'), t('qNsI1Opt2'), t('qNsI1Opt3')],
+        correctAnswer: 2, explanation: t('qNsI1Expl') },
+      { id: 'ns-i2', domain: 'network-security', difficulty: 'intermediate', type: 'multiple-choice',
+        prompt: t('qNsI2Prompt'), options: [t('qNsI2Opt0'), t('qNsI2Opt1'), t('qNsI2Opt2'), t('qNsI2Opt3')],
+        correctAnswer: 1, explanation: t('qNsI2Expl') },
+      { id: 'ns-a1', domain: 'network-security', difficulty: 'advanced', type: 'multiple-choice',
+        prompt: t('qNsA1Prompt'), options: [t('qNsA1Opt0'), t('qNsA1Opt1'), t('qNsA1Opt2'), t('qNsA1Opt3')],
+        correctAnswer: 1, explanation: t('qNsA1Expl') },
+      // Secure Software
+      { id: 'ssd-b1', domain: 'secure-software', difficulty: 'beginner', type: 'multiple-choice',
+        prompt: t('qSsdB1Prompt'), options: [t('qSsdB1Opt0'), t('qSsdB1Opt1'), t('qSsdB1Opt2'), t('qSsdB1Opt3')],
+        correctAnswer: 1, explanation: t('qSsdB1Expl') },
+      { id: 'ssd-b2', domain: 'secure-software', difficulty: 'beginner', type: 'multiple-choice',
+        prompt: t('qSsdB2Prompt'), options: [t('qSsdB2Opt0'), t('qSsdB2Opt1'), t('qSsdB2Opt2'), t('qSsdB2Opt3')],
+        correctAnswer: 1, explanation: t('qSsdB2Expl') },
+      { id: 'ssd-i1', domain: 'secure-software', difficulty: 'intermediate', type: 'scenario',
+        prompt: t('qSsdI1Prompt'), options: [t('qSsdI1Opt0'), t('qSsdI1Opt1'), t('qSsdI1Opt2'), t('qSsdI1Opt3')],
+        correctAnswer: 1, explanation: t('qSsdI1Expl') },
+      { id: 'ssd-i2', domain: 'secure-software', difficulty: 'intermediate', type: 'multiple-choice',
+        prompt: t('qSsdI2Prompt'), options: [t('qSsdI2Opt0'), t('qSsdI2Opt1'), t('qSsdI2Opt2'), t('qSsdI2Opt3')],
+        correctAnswer: 1, explanation: t('qSsdI2Expl') },
+      { id: 'ssd-a1', domain: 'secure-software', difficulty: 'advanced', type: 'scenario',
+        prompt: t('qSsdA1Prompt'), options: [t('qSsdA1Opt0'), t('qSsdA1Opt1'), t('qSsdA1Opt2'), t('qSsdA1Opt3')],
+        correctAnswer: 1, explanation: t('qSsdA1Expl') },
+      { id: 'ch-i1', domain: 'cyber-hygiene', difficulty: 'intermediate', type: 'multiple-choice',
+        prompt: t('qChI1Prompt'), options: [t('qChI1Opt0'), t('qChI1Opt1'), t('qChI1Opt2'), t('qChI1Opt3')],
+        correctAnswer: 1, explanation: t('qChI1Expl') },
+      { id: 'ch-i2', domain: 'cyber-hygiene', difficulty: 'intermediate', type: 'scenario',
+        prompt: t('qChI2Prompt'), options: [t('qChI2Opt0'), t('qChI2Opt1'), t('qChI2Opt2'), t('qChI2Opt3')],
+        correctAnswer: 1, explanation: t('qChI2Expl') },
+      { id: 'ch-a1', domain: 'cyber-hygiene', difficulty: 'advanced', type: 'scenario',
+        prompt: t('qChA1Prompt'), options: [t('qChA1Opt0'), t('qChA1Opt1'), t('qChA1Opt2'), t('qChA1Opt3')],
+        correctAnswer: 1, explanation: t('qChA1Expl') },
+    ];
+    const nextQuestion = engine.getNextQuestion(domain, translatedBank);
     if (nextQuestion) {
       setCurrentQuestion(nextQuestion);
       setStartTime(new Date());
