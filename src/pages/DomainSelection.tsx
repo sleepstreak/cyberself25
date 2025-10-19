@@ -86,14 +86,14 @@ const DomainSelection = () => {
                       </div>
                     )}
                   </div>
-                  <CardTitle className="text-xl">{domain.name}</CardTitle>
+                  <CardTitle className="text-xl">{t(domain.nameKey as any)}</CardTitle>
                   <Badge variant="secondary" className="w-fit">
-                    {domain.difficulty}
+                    {t(domain.difficultyKey as any)}
                   </Badge>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-sm leading-relaxed">
-                    {domain.description}
+                    {t(domain.descriptionKey as any)}
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -119,7 +119,7 @@ const DomainSelection = () => {
 
         <div className="mt-12 text-center">
           <p className="text-sm text-muted-foreground">
-            Selected {selectedDomains.length} of {domains.length} domains
+            {t('selectedDomains')} {selectedDomains.length} {t('ofDomains')} {domains.length} {t('domainsText')}
           </p>
         </div>
       </div>

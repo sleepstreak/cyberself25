@@ -70,7 +70,7 @@ export const OverviewPanel = ({ totalXP, overallScore, badges, domainScores }: O
 
         {/* Domain Summary */}
         <div>
-          <h4 className="text-sm font-semibold mb-3">Domain Mastery</h4>
+          <h4 className="text-sm font-semibold mb-3">{t('domainMastery')}</h4>
           <TooltipProvider>
             <div className="space-y-3">
               {domainScores.map((score, index) => (

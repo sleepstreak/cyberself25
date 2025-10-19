@@ -38,7 +38,7 @@ const Register = () => {
       return;
     }
     if (!consent) {
-      toast.error('Please accept the consent agreement');
+      toast.error(t('consentRequired'));
       return;
     }
 
@@ -70,9 +70,9 @@ const Register = () => {
 
         <Card className="shadow-elevation">
           <CardHeader>
-            <CardTitle>Registration</CardTitle>
+            <CardTitle>{t('registrationHeader')}</CardTitle>
             <CardDescription>
-              We only need a nickname - no personal data required
+              {t('registrationDesc')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -86,7 +86,7 @@ const Register = () => {
                 maxLength={20}
               />
               <p className="text-xs text-muted-foreground">
-                This will be used on the leaderboard (max 20 characters)
+                {t('nicknameHelper')}
               </p>
             </div>
 
@@ -101,10 +101,10 @@ const Register = () => {
                   htmlFor="consent"
                   className="text-sm font-normal cursor-pointer"
                 >
-                  I consent to anonymous data use for research purposes
+                  {t('consentLabel')}
                 </Label>
                 <p className="text-xs text-muted-foreground">
-                  We collect anonymous assessment data to improve cybersecurity education
+                  {t('consentDesc')}
                 </p>
               </div>
             </div>

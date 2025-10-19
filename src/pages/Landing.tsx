@@ -30,9 +30,9 @@ const Landing = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              variant="hero"
+              variant="secondary"
               onClick={() => navigate('/register')}
-              className="bg-white text-white hover:bg-white/90 hover:shadow-xl"
+              className="bg-white text-primary hover:bg-white/90 hover:shadow-xl shadow-elevation"
             >
               {t('startAssessment')}
             </Button>
@@ -55,9 +55,9 @@ const Landing = () => {
       <section id="features" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose CyberSelf?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('whyCyberSelf')}</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Built for learners across 7 CyberHubs countries with cutting-edge adaptive technology
+              {t('whyCyberSelfDesc')}
             </p>
           </div>
           
@@ -66,9 +66,9 @@ const Landing = () => {
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                 <TrendingUp className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Adaptive Learning</h3>
+              <h3 className="text-xl font-semibold mb-2">{t('featureAdaptiveTitle')}</h3>
               <p className="text-muted-foreground">
-                Questions adjust to your skill level in real-time for accurate assessment
+                {t('featureAdaptiveDesc')}
               </p>
             </div>
 
@@ -76,9 +76,9 @@ const Landing = () => {
               <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
                 <Award className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Personalized Roadmap</h3>
+              <h3 className="text-xl font-semibold mb-2">{t('featurePersonalizedTitle')}</h3>
               <p className="text-muted-foreground">
-                AI-powered recommendations tailored to your strengths and weaknesses
+                {t('featurePersonalizedDesc')}
               </p>
             </div>
 
@@ -86,9 +86,9 @@ const Landing = () => {
               <div className="w-12 h-12 rounded-lg bg-success/10 flex items-center justify-center mb-4">
                 <Shield className="w-6 h-6 text-success" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Industry-Aligned</h3>
+              <h3 className="text-xl font-semibold mb-2">{t('featureIndustryTitle')}</h3>
               <p className="text-muted-foreground">
-                Content aligned with ENISA and EU cybersecurity frameworks
+                {t('featureIndustryDesc')}
               </p>
             </div>
 
@@ -96,9 +96,9 @@ const Landing = () => {
               <div className="w-12 h-12 rounded-lg bg-warning/10 flex items-center justify-center mb-4">
                 <Users className="w-6 h-6 text-warning" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Community Benchmark</h3>
+              <h3 className="text-xl font-semibold mb-2">{t('featureCommunityTitle')}</h3>
               <p className="text-muted-foreground">
-                Compare your skills with peers across European CyberHubs
+                {t('featureCommunityDesc')}
               </p>
             </div>
           </div>
@@ -110,17 +110,17 @@ const Landing = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Discover Your Cyber Potential?
+              {t('ctaTitle')}
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Join thousands of learners across Europe advancing their cybersecurity careers
+              {t('ctaDesc')}
             </p>
             <Button 
               size="lg" 
               variant="hero"
               onClick={() => navigate('/register')}
             >
-              Begin Your Journey
+              {t('ctaButton')}
             </Button>
           </div>
         </div>
@@ -136,18 +136,18 @@ const Landing = () => {
                 <span className="font-bold text-lg">CyberSelf</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Powered by CyberHubs & EU Skills Academy
+                {t('footerPoweredBy')}
               </p>
             </div>
             <div className="flex flex-wrap gap-6 justify-center">
               <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-smooth">
-                Privacy Policy
+                {t('footerPrivacy')}
               </a>
               <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-smooth">
-                Terms of Use
+                {t('footerTerms')}
               </a>
               <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-smooth">
-                Contact
+                {t('footerContact')}
               </a>
             </div>
           </div>

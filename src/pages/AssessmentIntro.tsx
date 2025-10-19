@@ -65,12 +65,12 @@ const AssessmentIntro = () => {
 
             <div className="mt-8 p-4 bg-muted/30 rounded-lg">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium">Assessment Progress</span>
+                <span className="text-sm font-medium">{t('assessmentProgress')}</span>
                 <span className="text-sm text-muted-foreground">0%</span>
               </div>
               <Progress value={0} className="h-2" />
               <p className="text-xs text-muted-foreground mt-2">
-                You'll answer 10-15 questions per domain
+                {t('questionsPerDomain')}
               </p>
             </div>
           </CardContent>
@@ -93,7 +93,7 @@ const AssessmentIntro = () => {
 
         <div className="mt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            This assessment typically takes 15-30 minutes to complete
+            {t('assessmentDuration')}
           </p>
         </div>
       </div>

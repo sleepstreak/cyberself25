@@ -51,6 +51,9 @@ export interface DomainInfo {
   icon: string;
   difficulty: string;
   color: string;
+  nameKey: string;
+  descriptionKey: string;
+  difficultyKey: string;
 }
 
 export interface Recommendation {

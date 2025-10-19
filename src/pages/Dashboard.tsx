@@ -93,10 +93,10 @@ const Dashboard = () => {
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 mb-4">
             <Shield className="w-8 h-8 text-primary" />
-            <span className="text-2xl font-bold">CyberSelf Dashboard</span>
+            <span className="text-2xl font-bold">{t('dashboardTitle')}</span>
           </div>
-          <h1 className="text-3xl font-bold mb-2">Welcome back, {nickname}!</h1>
-          <p className="text-muted-foreground">Track your progress and continue your cybersecurity journey</p>
+          <h1 className="text-3xl font-bold mb-2">{t('welcomeBack')}, {nickname}!</h1>
+          <p className="text-muted-foreground">{t('dashboardSubtitle')}</p>
         </div>
 
         {/* Dashboard Grid */}
