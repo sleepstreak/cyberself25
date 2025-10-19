@@ -100,7 +100,7 @@ export class AdaptiveEngine {
     accuracy: number;
     avgResponseTime: number;
     currentLevel: DifficultyLevel;
-  } | null {
+  } {
     if (domain && this.domainPerformance.has(domain)) {
       const perf = this.domainPerformance.get(domain)!;
       return {
@@ -109,7 +109,13 @@ export class AdaptiveEngine {
         currentLevel: this.currentDifficulty,
       };
     }
-    return null;
+    
+    // Return default snapshot if no domain data yet
+    return {
+      accuracy: 0,
+      avgResponseTime: 0,
+      currentLevel: this.currentDifficulty,
+    };
   }
 
   calculateConfidenceMultiplier(responseTime: number): number {
@@ -132,6 +138,16 @@ export class AdaptiveEngine {
   }
 
   reset(): void {
+    this.currentDifficulty = 'beginner';
+    this.consecutiveCorrect = 0;
+    this.consecutiveIncorrect = 0;
+    // Don't clear usedQuestionIds when moving between domains
+    // Only clear domain performance for new domain
+    this.recentResponses = [];
+  }
+  
+  // New method to fully reset everything (for new assessment)
+  fullReset(): void {
     this.currentDifficulty = 'beginner';
     this.consecutiveCorrect = 0;
     this.consecutiveIncorrect = 0;

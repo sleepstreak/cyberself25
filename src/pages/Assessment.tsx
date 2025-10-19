@@ -58,8 +58,9 @@ const Assessment = () => {
       setStartTime(new Date());
       setSelectedAnswer(null);
       setShowFeedback(false);
+      setShowHint(false);
     } else {
-      // Move to next domain or finish
+      // No more questions available for this domain
       moveToNextDomain();
     }
   };
@@ -85,7 +86,8 @@ const Assessment = () => {
     };
 
     setResponses((prev) => [...prev, response]);
-    engine.updateDifficulty(isCorrect, responseTime);
+    // Update difficulty with domain context for better tracking
+    engine.updateDifficulty(isCorrect, responseTime, currentQuestion.domain);
 
     // Award XP
     const xpEarned = isCorrect ? (currentQuestion.difficulty === 'advanced' ? 15 : currentQuestion.difficulty === 'intermediate' ? 10 : 5) : 0;
@@ -112,7 +114,10 @@ const Assessment = () => {
 
   const handleNextQuestion = () => {
     setShowProgressSnapshot(false);
+    setXpToShow(null);
+    
     if (currentQuestionIndex + 1 >= QUESTIONS_PER_DOMAIN) {
+      // Completed all questions for this domain
       moveToNextDomain();
     } else {
       setCurrentQuestionIndex((prev) => prev + 1);
@@ -122,13 +127,21 @@ const Assessment = () => {
 
   const moveToNextDomain = () => {
     if (currentDomainIndex + 1 >= selectedDomains.length) {
-      // Assessment complete
+      // Assessment complete - all domains finished
       finishAssessment();
     } else {
+      // Move to next domain
+      const nextDomain = selectedDomains[currentDomainIndex + 1];
+      
       setCurrentDomainIndex((prev) => prev + 1);
       setCurrentQuestionIndex(0);
       engine.reset();
-      loadNextQuestion(selectedDomains[currentDomainIndex + 1]);
+      
+      // Show transition message
+      toast.info(`${t('domain')}: ${nextDomain.replace('-', ' ')}`);
+      
+      // Load first question of next domain
+      loadNextQuestion(nextDomain);
     }
   };
 
@@ -147,7 +160,8 @@ const Assessment = () => {
     navigate('/results');
   };
 
-  if (!currentQuestion) {
+  // Loading state
+  if (!currentQuestion || selectedDomains.length === 0) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
@@ -162,7 +176,8 @@ const Assessment = () => {
   const currentQuestionNumber = currentDomainIndex * QUESTIONS_PER_DOMAIN + currentQuestionIndex + 1;
   const progress = (currentQuestionNumber / totalQuestions) * 100;
 
-  const performanceSnapshot = engine.getPerformanceSnapshot();
+  // Get performance snapshot for current domain
+  const performanceSnapshot = engine.getPerformanceSnapshot(selectedDomains[currentDomainIndex]);
 
   return (
     <div className="min-h-screen bg-background py-8 px-4">
