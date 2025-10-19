@@ -288,7 +288,7 @@ export const translations = {
     avgTime: "Avg. Time",
     excellentWork: "Excellent work! 🌟",
     goodProgress: "Good progress! 💪",
-    keepGoing: "Keep going! 🎯",
+    keepGoingProgress: "Keep going! 🎯",
     stayFocused: "Stay focused! 📚",
     
     // Badge Unlock (legacy)
@@ -739,8 +739,6 @@ export const translations = {
     // Export Panel
     exportDescription: "Laadi oma edenemisaruanne alla või jaga oma saavutusi teistega.",
     shareProgress: "Jaga edenemist",
-    
-    // Export Panel
     exportTitle: "Ekspordi oma tulemused",
     exportSubtitle: "Jaga oma saavutusi",
     downloadPDF: "Laadi alla PDF",
@@ -796,17 +794,8 @@ export const translations = {
     avgTime: "Keskm. aeg",
     excellentWork: "Suurepärane töö! 🌟",
     goodProgress: "Hea progress! 💪",
-    keepGoing: "Jätka! 🎯",
+    keepGoingProgress: "Jätka! 🎯",
     stayFocused: "Jää keskendunuks! 📚",
-    
-    // Badge Unlock
-    badgeUnlocked: "Märk avatud!",
-    keepGoingMessage: "Jätka, et avada rohkem saavutusi!",
-    xpEarned: "XP teenitud",
-    xpMaster: "XP meister",
-    cyberExpert: "Küberekspert",
-    securityAnalyst: "Turvaanalüütik",
-    risingLearner: "Tõusev õppija",
     
     // Skill Tree
     learningRoadmap: "Õppetee kaart",
@@ -1234,11 +1223,10 @@ export const translations = {
     exploreAdvanced: "Fedezz fel haladó forgatókönyveket",
     contributeOpenSource: "Járulj hozzá a nyílt forráskódú biztonsághoz",
     mentorJuniors: "Oktass junior kollégákat",
-    recentAchievements: "Legutóbbi eredmények",
-    allBadges: "Összes jelvény",
-    unlocked: "Feloldva",
     
     // Export Panel
+    exportDescription: "Töltsd le előrehaladási jelentésed vagy oszd meg eredményeidet másokkal.",
+    shareProgress: "Előrehaladás megosztása",
     exportTitle: "Eredmények exportálása",
     exportSubtitle: "Oszd meg eredményeidet",
     downloadPDF: "PDF letöltése",
@@ -1294,17 +1282,8 @@ export const translations = {
     avgTime: "Átlagos idő",
     excellentWork: "Kiváló munka! 🌟",
     goodProgress: "Jó előrehaladás! 💪",
-    keepGoing: "Tovább! 🎯",
+    keepGoingProgress: "Tovább! 🎯",
     stayFocused: "Maradj koncentrált! 📚",
-    
-    // Badge Unlock
-    badgeUnlocked: "Jelvény feloldva!",
-    keepGoingMessage: "Folytasd a munkát további eredmények feloldásához!",
-    xpEarned: "Szerzett XP",
-    xpMaster: "XP mester",
-    cyberExpert: "Kiber szakértő",
-    securityAnalyst: "Biztonsági elemző",
-    risingLearner: "Feltörekvő tanuló",
     
     // Skill Tree
     learningRoadmap: "Tanulási útiterv",
@@ -1545,13 +1524,6 @@ export const translations = {
     codeReview: "Kód áttekintés",
     vulnerabilityTesting: "Sebezhetőség tesztelés",
     securityFrameworks: "Biztonsági keretrendszerek",
-    
-    // Gamification Additional
-    xpGrowth: "XP növekedés",
-    recentUnlocks: "Legutóbbi feloldások",
-    unlockedRecently: "Nemrég feloldva",
-    start: "Kezdés",
-    now: "Most",
     
     // Learning Resources
     cyberHygieneFundamentals: "Kiberhigiénia alapjai",
@@ -1798,17 +1770,8 @@ export const translations = {
     avgTime: "Vid. laikas",
     excellentWork: "Puikus darbas! 🌟",
     goodProgress: "Geras progresas! 💪",
-    keepGoing: "Tęsk! 🎯",
+    keepGoingProgress: "Tęsk! 🎯",
     stayFocused: "Išlik sutelktas! 📚",
-    
-    // Badge Unlock
-    badgeUnlocked: "Ženklelis atrakinta!",
-    keepGoingMessage: "Tęsk, kad atrakintum daugiau pasiekimų!",
-    xpEarned: "Uždirb XP",
-    xpMaster: "XP meistras",
-    cyberExpert: "Kibernetinio saugumo ekspertas",
-    securityAnalyst: "Saugumo analitikas",
-    risingLearner: "Kylantis besimokantysis",
     
     // Skill Tree
     learningRoadmap: "Mokymosi kelias",
@@ -2050,13 +2013,6 @@ export const translations = {
     vulnerabilityTesting: "Pažeidžiamumų testavimas",
     securityFrameworks: "Saugumo struktūros",
     
-    // Gamification Additional
-    xpGrowth: "XP augimas",
-    recentUnlocks: "Neseniai atrakinti",
-    unlockedRecently: "Neseniai atrakinta",
-    start: "Pradžia",
-    now: "Dabar",
-    
     // Learning Resources
     cyberHygieneFundamentals: "Kibernetinio saugumo higiene pagrindai",
     networkSecurityFundamentals: "Tinklo saugumo pagrindai",
@@ -2242,11 +2198,10 @@ export const translations = {
     exploreAdvanced: "Poznaj zaawansowane scenariusze",
     contributeOpenSource: "Przyczyń się do bezpieczeństwa open source",
     mentorJuniors: "Mentoringuj młodszych uczniów",
-    recentAchievements: "Ostatnie osiągnięcia",
-    allBadges: "Wszystkie odznaki",
-    unlocked: "Odblokowane",
     
     // Export Panel
+    exportDescription: "Pobierz raport postępów lub podziel się swoimi osiągnięciami z innymi.",
+    shareProgress: "Udostępnij postęp",
     exportTitle: "Eksportuj swoje wyniki",
     exportSubtitle: "Udostępnij swoje osiągnięcia",
     downloadPDF: "Pobierz PDF",
@@ -2302,17 +2257,8 @@ export const translations = {
     avgTime: "Średni czas",
     excellentWork: "Doskonała praca! 🌟",
     goodProgress: "Dobry postęp! 💪",
-    keepGoing: "Kontynuuj! 🎯",
+    keepGoingProgress: "Kontynuuj! 🎯",
     stayFocused: "Zachowaj koncentrację! 📚",
-    
-    // Badge Unlock
-    badgeUnlocked: "Odznaka odblokowana!",
-    keepGoingMessage: "Kontynuuj, aby odblokować więcej osiągnięć!",
-    xpEarned: "Zdobyte XP",
-    xpMaster: "Mistrz XP",
-    cyberExpert: "Ekspert cyberbezpieczeństwa",
-    securityAnalyst: "Analityk bezpieczeństwa",
-    risingLearner: "Rozwijający się uczeń",
     
     // Skill Tree
     learningRoadmap: "Mapa uczenia się",
@@ -2553,13 +2499,6 @@ export const translations = {
     codeReview: "Przegląd kodu",
     vulnerabilityTesting: "Testowanie podatności",
     securityFrameworks: "Frameworki bezpieczeństwa",
-    
-    // Gamification Additional
-    xpGrowth: "Wzrost XP",
-    recentUnlocks: "Ostatnie odblokowania",
-    unlockedRecently: "Ostatnio odblokowane",
-    start: "Start",
-    now: "Teraz",
     
     // Learning Resources
     cyberHygieneFundamentals: "Podstawy cyberhigieny",
@@ -2806,13 +2745,6 @@ export const translations = {
     vulnerabilityTesting: "Testes de vulnerabilidade",
     securityFrameworks: "Frameworks de segurança",
     
-    // Gamification Additional
-    xpGrowth: "Crescimento de XP",
-    recentUnlocks: "Desbloqueios recentes",
-    unlockedRecently: "Desbloqueado recentemente",
-    start: "Início",
-    now: "Agora",
-    
     // Learning Resources
     cyberHygieneFundamentals: "Fundamentos de ciberhigiene",
     networkSecurityFundamentals: "Fundamentos de segurança de rede",
@@ -3058,13 +2990,6 @@ export const translations = {
     vulnerabilityTesting: "Testovanie zraniteľností",
     securityFrameworks: "Bezpečnostné rámce",
     
-    // Gamification Additional
-    xpGrowth: "Rast XP",
-    recentUnlocks: "Nedávne odomknutia",
-    unlockedRecently: "Nedávno odomknuté",
-    start: "Začiatok",
-    now: "Teraz",
-    
     // Learning Resources
     cyberHygieneFundamentals: "Základy kyber hygieny",
     networkSecurityFundamentals: "Základy bezpečnosti siete",
@@ -3309,13 +3234,6 @@ export const translations = {
     codeReview: "Pregled kode",
     vulnerabilityTesting: "Testiranje ranljivosti",
     securityFrameworks: "Varnostni okviri",
-    
-    // Gamification Additional
-    xpGrowth: "Rast XP",
-    recentUnlocks: "Nedavni odkleni",
-    unlockedRecently: "Nedavno odklenjen",
-    start: "Začetek",
-    now: "Zdaj",
     
     // Learning Resources
     cyberHygieneFundamentals: "Osnove kibernetske higiene",
