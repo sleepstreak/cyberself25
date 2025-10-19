@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shield, Clock, CheckCircle, XCircle, ChevronRight, Zap } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -17,6 +18,7 @@ const QUESTIONS_PER_DOMAIN = 10;
 
 const Assessment = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [currentDomainIndex, setCurrentDomainIndex] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
@@ -94,7 +96,7 @@ const Assessment = () => {
 
     if (isCorrect) {
       setXpToShow(xpEarned);
-      toast.success(`Correct! +${xpEarned} XP`);
+      toast.success(`${t('correct')} +${xpEarned} XP`);
     }
 
     // Show progress snapshot every 5 questions
@@ -141,7 +143,7 @@ const Assessment = () => {
       localStorage.setItem('cyberself_session', JSON.stringify(session));
     }
 
-    toast.success('Assessment Complete!');
+    toast.success(t('notifAssessmentComplete'));
     navigate('/results');
   };
 
@@ -150,7 +152,7 @@ const Assessment = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <Shield className="w-16 h-16 text-primary mx-auto mb-4 animate-pulse" />
-          <p className="text-lg text-muted-foreground">Loading questions...</p>
+          <p className="text-lg text-muted-foreground">{t('loadingQuestions')}</p>
         </div>
       </div>
     );
@@ -182,10 +184,10 @@ const Assessment = () => {
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
               <span className="font-medium">
-                Question {currentQuestionNumber} of {totalQuestions}
+                {t('question')} {currentQuestionNumber} {t('of')} {totalQuestions}
               </span>
               <span className="text-muted-foreground">
-                Domain: {selectedDomains[currentDomainIndex].replace('-', ' ')}
+                {t('domain')}: {selectedDomains[currentDomainIndex].replace('-', ' ')}
               </span>
             </div>
             <Progress value={progress} className="h-2" />
@@ -207,7 +209,7 @@ const Assessment = () => {
             <div className="flex items-center gap-2 mb-4">
               <Zap className="w-4 h-4 text-warning animate-pulse" />
               <span className="text-sm text-muted-foreground">
-                Difficulty adapting to your performance
+                {t('difficultyAdapting')}
               </span>
             </div>
 
@@ -245,7 +247,7 @@ const Assessment = () => {
 
             {showFeedback && currentQuestion.explanation && (
               <div className="mt-6 p-4 bg-muted/30 rounded-lg">
-                <p className="text-sm font-medium mb-1">Explanation:</p>
+                <p className="text-sm font-medium mb-1">{t('explanation')}</p>
                 <p className="text-sm text-muted-foreground">{currentQuestion.explanation}</p>
               </div>
             )}
@@ -277,7 +279,7 @@ const Assessment = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Clock className="w-4 h-4" />
-            <span>Take your time</span>
+            <span>{t('takeYourTime')}</span>
           </div>
 
           {!showFeedback ? (
@@ -287,7 +289,7 @@ const Assessment = () => {
               onClick={handleSubmitAnswer}
               disabled={selectedAnswer === null}
             >
-              Submit Answer
+              {t('submitAnswer')}
             </Button>
           ) : (
             <Button
@@ -295,7 +297,7 @@ const Assessment = () => {
               variant="hero"
               onClick={handleNextQuestion}
             >
-              Next Question
+              {t('nextQuestion')}
               <ChevronRight className="ml-2 w-5 h-5" />
             </Button>
           )}
