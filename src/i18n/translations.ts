@@ -169,6 +169,27 @@ export const translations = {
     video: "Video",
     bootcamp: "Bootcamp",
     
+    // Skill Names
+    passwordManagement: "Password Management",
+    phishingDetection: "Phishing Detection",
+    softwareUpdates: "Software Updates",
+    dataBackup: "Data Backup",
+    firewallConfiguration: "Firewall Configuration",
+    vpnUsage: "VPN Usage",
+    networkMonitoring: "Network Monitoring",
+    intrusionDetection: "Intrusion Detection",
+    secureCoding: "Secure Coding Practices",
+    codeReview: "Code Review",
+    vulnerabilityTesting: "Vulnerability Testing",
+    securityFrameworks: "Security Frameworks",
+    
+    // Learning Resources
+    cyberHygieneFundamentals: "Cyber Hygiene Fundamentals",
+    networkSecurityFundamentals: "Network Security Fundamentals",
+    secureSoftwareFundamentals: "Secure Software Development Fundamentals",
+    enisaFramework: "ENISA Cybersecurity Skills Framework",
+    cyberhubBootcamp: "CyberHub Bootcamp",
+    
     // Leaderboard Panel
     globalRank: "Global Rank",
     countryRank: "Country Rank",
@@ -179,9 +200,14 @@ export const translations = {
     xpProgress: "XP Progress",
     nextLevelIn: "Next level in",
     xp: "XP",
+    xpGrowth: "XP Growth",
     recentAchievements: "Recent Achievements",
+    recentUnlocks: "Recent Unlocks",
+    unlockedRecently: "Unlocked recently",
     allBadges: "All Badges",
     unlocked: "Unlocked",
+    start: "Start",
+    now: "Now",
     
     // Export Panel
     exportTitle: "Export Your Results",
@@ -957,6 +983,34 @@ export const translations = {
     qSsdA2Opt2: "Mõjutab ainult arenduskeskkondi",
     qSsdA2Opt3: "Turvaprobleemi pole, ainult koodi kvaliteedi probleem",
     qSsdA2Expl: "Võidutingimused autentimises võivad võimaldada ründajatel turvakontrolle mööda minna või saada volitamata juurdepääsu.",
+    
+    // Skill Names (for Skill Tree)
+    passwordManagement: "Paroolihaldus",
+    phishingDetection: "Phishingu tuvastamine",
+    softwareUpdates: "Tarkvarauuendused",
+    dataBackup: "Andmete varundamine",
+    firewallConfiguration: "Tulemüüri konfiguratsioon",
+    vpnUsage: "VPN kasutamine",
+    networkMonitoring: "Võrgu jälgimine",
+    intrusionDetection: "Sissetungimise tuvastamine",
+    secureCoding: "Turvalised kodeerimistavad",
+    codeReview: "Koodi ülevaatus",
+    vulnerabilityTesting: "Haavatavuse testimine",
+    securityFrameworks: "Turvalisuse raamistikud",
+    
+    // Gamification Additional
+    xpGrowth: "XP kasv",
+    recentUnlocks: "Hiljutised avastused",
+    unlockedRecently: "Hiljuti avatud",
+    start: "Algus",
+    now: "Praegu",
+    
+    // Learning Resources
+    cyberHygieneFundamentals: "Küberhügieeni põhitõed",
+    networkSecurityFundamentals: "Võrguturbe põhitõed",
+    secureSoftwareFundamentals: "Turvalise tarkvara arenduse põhitõed",
+    enisaFramework: "ENISA küberjulgeoleku oskuste raamistik",
+    cyberhubBootcamp: "CyberHub bootcamp",
   },
   
   hu: {
@@ -1403,6 +1457,34 @@ export const translations = {
     qSsdA2Opt2: "Csak a fejlesztési környezeteket érinti",
     qSsdA2Opt3: "Nincs biztonsági hatás, csak kódminőségi probléma",
     qSsdA2Expl: "A versenyhelyzetek a hitelesítésben lehetővé tehetik a támadók számára a biztonsági ellenőrzések megkerülését vagy jogosulatlan hozzáférést.",
+    
+    // Skill Names (for Skill Tree)
+    passwordManagement: "Jelszókezelés",
+    phishingDetection: "Phishing észlelés",
+    softwareUpdates: "Szoftverfrissítések",
+    dataBackup: "Adatmentés",
+    firewallConfiguration: "Tűzfal konfiguráció",
+    vpnUsage: "VPN használat",
+    networkMonitoring: "Hálózat figyelés",
+    intrusionDetection: "Behatolás észlelés",
+    secureCoding: "Biztonságos kódolási gyakorlatok",
+    codeReview: "Kód áttekintés",
+    vulnerabilityTesting: "Sebezhetőség tesztelés",
+    securityFrameworks: "Biztonsági keretrendszerek",
+    
+    // Gamification Additional
+    xpGrowth: "XP növekedés",
+    recentUnlocks: "Legutóbbi feloldások",
+    unlockedRecently: "Nemrég feloldva",
+    start: "Kezdés",
+    now: "Most",
+    
+    // Learning Resources
+    cyberHygieneFundamentals: "Kiberhigiénia alapjai",
+    networkSecurityFundamentals: "Hálózati biztonság alapjai",
+    secureSoftwareFundamentals: "Biztonságos szoftverfejlesztés alapjai",
+    enisaFramework: "ENISA kiberbiztonsági készségek keretrendszere",
+    cyberhubBootcamp: "CyberHub bootcamp",
   },
   
   lt: {
@@ -1849,6 +1931,34 @@ export const translations = {
     qSsdA2Opt2: "Veikia tik kūrimo aplinkas",
     qSsdA2Opt3: "Jokio saugumo poveikio, tik kodo kokybės problema",
     qSsdA2Expl: "Lenktynių sąlygos autentifikavime gali leisti užpuolikams apeiti saugumo patikrinimus arba gauti neleistiną prieigą.",
+    
+    // Skill Names (for Skill Tree)
+    passwordManagement: "Slaptažodžių valdymas",
+    phishingDetection: "Phishing aptikimas",
+    softwareUpdates: "Programinės įrangos atnaujinimai",
+    dataBackup: "Duomenų atsarginė kopija",
+    firewallConfiguration: "Užkardos konfigūracija",
+    vpnUsage: "VPN naudojimas",
+    networkMonitoring: "Tinklo stebėjimas",
+    intrusionDetection: "Įsibrovimų aptikimas",
+    secureCoding: "Saugaus kodavimo praktikos",
+    codeReview: "Kodo peržiūra",
+    vulnerabilityTesting: "Pažeidžiamumų testavimas",
+    securityFrameworks: "Saugumo struktūros",
+    
+    // Gamification Additional
+    xpGrowth: "XP augimas",
+    recentUnlocks: "Neseniai atrakinti",
+    unlockedRecently: "Neseniai atrakinta",
+    start: "Pradžia",
+    now: "Dabar",
+    
+    // Learning Resources
+    cyberHygieneFundamentals: "Kibernetinio saugumo higiene pagrindai",
+    networkSecurityFundamentals: "Tinklo saugumo pagrindai",
+    secureSoftwareFundamentals: "Saugios programinės įrangos kūrimo pagrindai",
+    enisaFramework: "ENISA kibernetinio saugumo įgūdžių sistema",
+    cyberhubBootcamp: "CyberHub bootcamp",
   },
   
   pl: {
@@ -2295,6 +2405,34 @@ export const translations = {
     qSsdA2Opt2: "Dotyczy tylko środowisk programistycznych",
     qSsdA2Opt3: "Brak wpływu na bezpieczeństwo, tylko problem jakości kodu",
     qSsdA2Expl: "Warunki wyścigu w uwierzytelnianiu mogą pozwolić atakującym ominąć kontrole bezpieczeństwa lub uzyskać nieautoryzowany dostęp.",
+    
+    // Skill Names (for Skill Tree)
+    passwordManagement: "Zarządzanie hasłami",
+    phishingDetection: "Wykrywanie phishingu",
+    softwareUpdates: "Aktualizacje oprogramowania",
+    dataBackup: "Kopia zapasowa danych",
+    firewallConfiguration: "Konfiguracja zapory",
+    vpnUsage: "Użycie VPN",
+    networkMonitoring: "Monitorowanie sieci",
+    intrusionDetection: "Wykrywanie włamań",
+    secureCoding: "Praktyki bezpiecznego kodowania",
+    codeReview: "Przegląd kodu",
+    vulnerabilityTesting: "Testowanie podatności",
+    securityFrameworks: "Frameworki bezpieczeństwa",
+    
+    // Gamification Additional
+    xpGrowth: "Wzrost XP",
+    recentUnlocks: "Ostatnie odblokowania",
+    unlockedRecently: "Ostatnio odblokowane",
+    start: "Start",
+    now: "Teraz",
+    
+    // Learning Resources
+    cyberHygieneFundamentals: "Podstawy cyberhigieny",
+    networkSecurityFundamentals: "Podstawy bezpieczeństwa sieci",
+    secureSoftwareFundamentals: "Podstawy bezpiecznego rozwoju oprogramowania",
+    enisaFramework: "Ramy kompetencji cyberbezpieczeństwa ENISA",
+    cyberhubBootcamp: "CyberHub bootcamp",
   },
   
   pt: {
@@ -2489,6 +2627,34 @@ export const translations = {
     notifLevelUp: "Subida de nível! Estás agora no nível",
     notifAssessmentComplete: "Avaliação concluída com sucesso!",
     notifProgressSaved: "Progresso guardado",
+    
+    // Skill Names (for Skill Tree)
+    passwordManagement: "Gestão de palavras-passe",
+    phishingDetection: "Deteção de phishing",
+    softwareUpdates: "Atualizações de software",
+    dataBackup: "Cópia de segurança de dados",
+    firewallConfiguration: "Configuração de firewall",
+    vpnUsage: "Uso de VPN",
+    networkMonitoring: "Monitorização de rede",
+    intrusionDetection: "Deteção de intrusões",
+    secureCoding: "Práticas de codificação segura",
+    codeReview: "Revisão de código",
+    vulnerabilityTesting: "Testes de vulnerabilidade",
+    securityFrameworks: "Frameworks de segurança",
+    
+    // Gamification Additional
+    xpGrowth: "Crescimento de XP",
+    recentUnlocks: "Desbloqueios recentes",
+    unlockedRecently: "Desbloqueado recentemente",
+    start: "Início",
+    now: "Agora",
+    
+    // Learning Resources
+    cyberHygieneFundamentals: "Fundamentos de ciberhigiene",
+    networkSecurityFundamentals: "Fundamentos de segurança de rede",
+    secureSoftwareFundamentals: "Fundamentos de desenvolvimento de software seguro",
+    enisaFramework: "Estrutura de competências de cibersegurança da ENISA",
+    cyberhubBootcamp: "CyberHub bootcamp",
   },
   
   sk: {
@@ -2683,6 +2849,34 @@ export const translations = {
     notifLevelUp: "Posun na vyššiu úroveň! Teraz ste na úrovni",
     notifAssessmentComplete: "Hodnotenie úspešne dokončené!",
     notifProgressSaved: "Pokrok uložený",
+    
+    // Skill Names (for Skill Tree)
+    passwordManagement: "Správa hesiel",
+    phishingDetection: "Detekcia phishingu",
+    softwareUpdates: "Aktualizácie softvéru",
+    dataBackup: "Zálohovanie údajov",
+    firewallConfiguration: "Konfigurácia firewallu",
+    vpnUsage: "Použitie VPN",
+    networkMonitoring: "Monitorovanie siete",
+    intrusionDetection: "Detekcia prieniku",
+    secureCoding: "Praktiky bezpečného kódovania",
+    codeReview: "Kontrola kódu",
+    vulnerabilityTesting: "Testovanie zraniteľností",
+    securityFrameworks: "Bezpečnostné rámce",
+    
+    // Gamification Additional
+    xpGrowth: "Rast XP",
+    recentUnlocks: "Nedávne odomknutia",
+    unlockedRecently: "Nedávno odomknuté",
+    start: "Začiatok",
+    now: "Teraz",
+    
+    // Learning Resources
+    cyberHygieneFundamentals: "Základy kyber hygieny",
+    networkSecurityFundamentals: "Základy bezpečnosti siete",
+    secureSoftwareFundamentals: "Základy bezpečného vývoja softvéru",
+    enisaFramework: "Rámec kybernetických bezpečnostných zručností ENISA",
+    cyberhubBootcamp: "CyberHub bootcamp",
   },
   
   sl: {
@@ -2877,6 +3071,34 @@ export const translations = {
     notifLevelUp: "Napredovanje! Zdaj ste na ravni",
     notifAssessmentComplete: "Ocenjevanje uspešno zaključeno!",
     notifProgressSaved: "Napredek shranjen",
+    
+    // Skill Names (for Skill Tree)
+    passwordManagement: "Upravljanje gesel",
+    phishingDetection: "Odkrivanje lažnega predstavljanja",
+    softwareUpdates: "Posodobitve programske opreme",
+    dataBackup: "Varnostna kopija podatkov",
+    firewallConfiguration: "Konfiguracija požarnega zidu",
+    vpnUsage: "Uporaba VPN",
+    networkMonitoring: "Spremljanje omrežja",
+    intrusionDetection: "Odkrivanje vdorov",
+    secureCoding: "Prakse varnega kodiranja",
+    codeReview: "Pregled kode",
+    vulnerabilityTesting: "Testiranje ranljivosti",
+    securityFrameworks: "Varnostni okviri",
+    
+    // Gamification Additional
+    xpGrowth: "Rast XP",
+    recentUnlocks: "Nedavni odkleni",
+    unlockedRecently: "Nedavno odklenjen",
+    start: "Začetek",
+    now: "Zdaj",
+    
+    // Learning Resources
+    cyberHygieneFundamentals: "Osnove kibernetske higiene",
+    networkSecurityFundamentals: "Osnove omrežne varnosti",
+    secureSoftwareFundamentals: "Osnove varnega razvoja programske opreme",
+    enisaFramework: "Okvir kibernetskih varnostnih veščin ENISA",
+    cyberhubBootcamp: "CyberHub bootcamp",
   },
 };
 

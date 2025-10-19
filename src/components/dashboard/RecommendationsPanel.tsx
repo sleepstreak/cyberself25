@@ -25,14 +25,14 @@ export const RecommendationsPanel = ({ domainScores }: RecommendationsPanelProps
     priority: score.accuracy < 50 ? 'high' : score.accuracy < 70 ? 'medium' : 'low',
     resources: [
       {
-        title: `${getDomainName(score.domain)} Fundamentals`,
+        title: `${getDomainName(score.domain)} ${t('course')}`,
         url: 'https://www.enisa.europa.eu/',
-        type: 'course',
+        type: t('course'),
       },
       {
-        title: 'ENISA Cybersecurity Skills Framework',
+        title: t('enisaFramework'),
         url: 'https://www.enisa.europa.eu/',
-        type: 'article',
+        type: t('article'),
       },
     ],
   }));
@@ -96,7 +96,7 @@ export const RecommendationsPanel = ({ domainScores }: RecommendationsPanelProps
                     : 'secondary'
                 }
               >
-                {rec.priority} priority
+                {t(`${rec.priority}Priority` as any)}
               </Badge>
             </div>
             <div className="space-y-2">

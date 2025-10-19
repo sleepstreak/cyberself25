@@ -3,6 +3,7 @@ import { ChevronDown, ChevronRight, Check, Lock, Sparkles } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface SkillNode {
   id: string;
@@ -18,6 +19,7 @@ interface SkillTreeProps {
 
 const SkillNodeComponent = ({ node, depth = 0 }: { node: SkillNode; depth?: number }) => {
   const [expanded, setExpanded] = useState(depth === 0);
+  const { t } = useLanguage();
   const hasChildren = node.children && node.children.length > 0;
 
   return (
@@ -59,17 +61,17 @@ const SkillNodeComponent = ({ node, depth = 0 }: { node: SkillNode; depth?: numb
           "font-medium flex-1",
           node.mastered ? "text-success" : node.recommended ? "text-primary" : "text-muted-foreground"
         )}>
-          {node.name}
+          {t(node.name as any) || node.name}
         </span>
 
         {node.mastered && (
           <Badge variant="outline" className="bg-success/10 text-success border-success">
-            Mastered
+            {t('mastered')}
           </Badge>
         )}
         {node.recommended && !node.mastered && (
           <Badge className="bg-primary text-primary-foreground animate-pulse">
-            Next Step
+            {t('nextStep')}
           </Badge>
         )}
       </div>
@@ -86,19 +88,21 @@ const SkillNodeComponent = ({ node, depth = 0 }: { node: SkillNode; depth?: numb
 };
 
 export const SkillTree = ({ data }: SkillTreeProps) => {
+  const { t } = useLanguage();
+  
   return (
     <Card className="shadow-elevation">
       <CardContent className="p-6">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-xl font-bold">Learning Roadmap</h3>
+          <h3 className="text-xl font-bold">{t('learningRoadmap')}</h3>
           <div className="flex gap-2">
             <div className="flex items-center gap-1 text-sm">
               <div className="w-3 h-3 rounded-full bg-success" />
-              <span className="text-muted-foreground">Mastered</span>
+              <span className="text-muted-foreground">{t('mastered')}</span>
             </div>
             <div className="flex items-center gap-1 text-sm">
               <div className="w-3 h-3 rounded-full bg-primary" />
-              <span className="text-muted-foreground">Recommended</span>
+              <span className="text-muted-foreground">{t('recommended')}</span>
             </div>
           </div>
         </div>

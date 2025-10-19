@@ -49,7 +49,7 @@ export const GamificationPanel = ({ totalXP, badges }: GamificationPanelProps) =
 
         {/* XP Graph */}
         <div>
-          <h4 className="text-sm font-semibold mb-3">XP Growth</h4>
+          <h4 className="text-sm font-semibold mb-3">{t('xpGrowth')}</h4>
           <div className="flex items-end justify-between gap-1 h-32">
             {xpHistory.map((xp, index) => (
               <div
@@ -64,14 +64,14 @@ export const GamificationPanel = ({ totalXP, badges }: GamificationPanelProps) =
             ))}
           </div>
           <div className="flex justify-between text-xs text-muted-foreground mt-2">
-            <span>Start</span>
-            <span>Now</span>
+            <span>{t('start')}</span>
+            <span>{t('now')}</span>
           </div>
         </div>
 
         {/* Badges Timeline */}
         <div>
-          <h4 className="text-sm font-semibold mb-2">Recent Unlocks</h4>
+          <h4 className="text-sm font-semibold mb-2">{t('recentUnlocks')}</h4>
           <div className="space-y-2">
             {badges.map((badge, index) => (
               <div
@@ -84,7 +84,7 @@ export const GamificationPanel = ({ totalXP, badges }: GamificationPanelProps) =
                 </div>
                 <div className="flex-1">
                   <div className="text-sm font-medium">{badge}</div>
-                  <div className="text-xs text-muted-foreground">Unlocked recently</div>
+                  <div className="text-xs text-muted-foreground">{t('unlockedRecently')}</div>
                 </div>
               </div>
             ))}

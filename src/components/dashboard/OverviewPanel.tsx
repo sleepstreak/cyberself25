@@ -91,10 +91,10 @@ export const OverviewPanel = ({ totalXP, overallScore, badges, domainScores }: O
                   </TooltipTrigger>
                   <TooltipContent>
                     <div className="text-xs space-y-1">
-                      <p><strong>Accuracy:</strong> {score.accuracy}%</p>
-                      <p><strong>Level:</strong> {score.level}</p>
-                      <p><strong>Avg Time:</strong> {score.avgResponseTime}s</p>
-                      <p><strong>Questions:</strong> {score.correctAnswers}/{score.questionsAnswered}</p>
+                      <p><strong>{t('accuracy')}:</strong> {score.accuracy}%</p>
+                      <p><strong>{t('level')}:</strong> {t(score.level as any)}</p>
+                      <p><strong>{t('avgTime')}:</strong> {score.avgResponseTime}s</p>
+                      <p><strong>{t('questionsAnswered')}:</strong> {score.correctAnswers}/{score.questionsAnswered}</p>
                     </div>
                   </TooltipContent>
                 </Tooltip>

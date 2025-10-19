@@ -38,22 +38,22 @@ const createDomainTree = (score: DomainScore): SkillNode => {
 const createSubskills = (score: DomainScore): SkillNode[] => {
   const subskills: { [key: string]: string[] } = {
     'cyber-hygiene': [
-      'Password Management',
-      'Phishing Detection',
-      'Software Updates',
-      'Data Backup',
+      'passwordManagement',
+      'phishingDetection',
+      'softwareUpdates',
+      'dataBackup',
     ],
     'network-security': [
-      'Firewall Configuration',
-      'VPN Usage',
-      'Network Monitoring',
-      'Intrusion Detection',
+      'firewallConfiguration',
+      'vpnUsage',
+      'networkMonitoring',
+      'intrusionDetection',
     ],
     'secure-software': [
-      'Secure Coding Practices',
-      'Code Review',
-      'Vulnerability Testing',
-      'Security Frameworks',
+      'secureCoding',
+      'codeReview',
+      'vulnerabilityTesting',
+      'securityFrameworks',
     ],
   };
 
@@ -65,7 +65,7 @@ const createSubskills = (score: DomainScore): SkillNode[] => {
     
     return {
       id: `${score.domain}-${index}`,
-      name: skill,
+      name: skill, // Now returns translation key
       mastered: score.accuracy >= masteryThreshold,
       recommended: score.accuracy < recommendedThreshold && score.accuracy >= recommendedThreshold - 20,
     };
@@ -74,9 +74,9 @@ const createSubskills = (score: DomainScore): SkillNode[] => {
 
 const getDomainDisplayName = (domain: Domain): string => {
   const names: { [key: string]: string } = {
-    'cyber-hygiene': 'Cyber Hygiene',
-    'network-security': 'Network Security',
-    'secure-software': 'Secure Software Development',
+    'cyber-hygiene': 'domainCyberHygiene',
+    'network-security': 'domainNetworkSecurity',
+    'secure-software': 'domainSecureSoftware',
   };
   return names[domain] || domain;
 };
