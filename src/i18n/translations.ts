@@ -696,7 +696,6 @@ export const translations = {
     bootcamp: "Laager",
     
     // Leaderboard Panel
-    globalRank: "Ülemaailmne koht",
     countryRank: "Riigi koht",
     topPerformers: "Parimad esitajad",
     yourRank: "Sinu koht",
@@ -1184,7 +1183,6 @@ export const translations = {
     bootcamp: "Bootcamp",
     
     // Leaderboard Panel
-    globalRank: "Globális helyezés",
     countryRank: "Országos helyezés",
     topPerformers: "Legjobb teljesítők",
     yourRank: "A te helyezésed",
@@ -1671,7 +1669,6 @@ export const translations = {
     bootcamp: "Stovykla",
     
     // Leaderboard Panel
-    globalRank: "Pasaulinis rangas",
     countryRank: "Šalies rangas",
     topPerformers: "Geriausi atlikėjai",
     yourRank: "Tavo rangas",
@@ -2159,7 +2156,6 @@ export const translations = {
     bootcamp: "Bootcamp",
     
     // Leaderboard Panel
-    globalRank: "Pozycja globalna",
     countryRank: "Pozycja krajowa",
     topPerformers: "Najlepsi wykonawcy",
     yourRank: "Twoja pozycja",
@@ -2646,7 +2642,6 @@ export const translations = {
     bootcamp: "Bootcamp",
     
     // Leaderboard Panel
-    globalRank: "Classificação global",
     countryRank: "Classificação nacional",
     topPerformers: "Melhores desempenhos",
     yourRank: "A tua classificação",
@@ -2891,7 +2886,6 @@ export const translations = {
     bootcamp: "Bootcamp",
     
     // Leaderboard Panel
-    globalRank: "Globálne umiestnenie",
     countryRank: "Národné umiestnenie",
     topPerformers: "Najlepší výkonní",
     yourRank: "Vaše umiestnenie",
@@ -3136,7 +3130,6 @@ export const translations = {
     bootcamp: "Bootcamp",
     
     // Leaderboard Panel
-    globalRank: "Globalna uvrstitev",
     countryRank: "Državna uvrstitev",
     topPerformers: "Najboljši izvajalci",
     yourRank: "Vaša uvrstitev",
