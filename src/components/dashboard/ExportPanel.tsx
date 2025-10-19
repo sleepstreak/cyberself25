@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PersonaProfile } from '@/types/persona';
 import { toast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ExportPanelProps {
   nickname: string;
@@ -13,6 +14,8 @@ interface ExportPanelProps {
 }
 
 export const ExportPanel = ({ nickname, totalXP, overallScore, badges, persona }: ExportPanelProps) => {
+  const { t } = useLanguage();
+  
   const handleExportPDF = () => {
     toast({
       title: "Export Started",
@@ -62,12 +65,12 @@ export const ExportPanel = ({ nickname, totalXP, overallScore, badges, persona }
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Share2 className="w-5 h-5 text-primary" />
-          Export & Share
+          {t('exportShare')}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="text-sm text-muted-foreground">
-          Download your progress report or share your achievements with others.
+          {t('exportDescription')}
         </p>
 
         {/* Preview Card */}
@@ -87,15 +90,15 @@ export const ExportPanel = ({ nickname, totalXP, overallScore, badges, persona }
           <div className="grid grid-cols-3 gap-2 text-center text-xs">
             <div className="p-2 rounded bg-muted/30">
               <div className="font-bold text-primary">{totalXP}</div>
-              <div className="text-muted-foreground">XP</div>
+              <div className="text-muted-foreground">{t('xp')}</div>
             </div>
             <div className="p-2 rounded bg-muted/30">
               <div className="font-bold text-primary">{overallScore}%</div>
-              <div className="text-muted-foreground">Score</div>
+              <div className="text-muted-foreground">{t('score')}</div>
             </div>
             <div className="p-2 rounded bg-muted/30">
               <div className="font-bold text-primary">{badges.length}</div>
-              <div className="text-muted-foreground">Badges</div>
+              <div className="text-muted-foreground">{t('badges')}</div>
             </div>
           </div>
         </div>
@@ -108,7 +111,7 @@ export const ExportPanel = ({ nickname, totalXP, overallScore, badges, persona }
             onClick={handleExportPDF}
           >
             <Download className="mr-2 w-4 h-4" />
-            Download PDF Report
+            {t('downloadPDF')}
           </Button>
           <Button
             variant="outline"
@@ -116,7 +119,7 @@ export const ExportPanel = ({ nickname, totalXP, overallScore, badges, persona }
             onClick={handleShare}
           >
             <Share2 className="mr-2 w-4 h-4" />
-            Share Progress
+            {t('shareProgress')}
           </Button>
         </div>
       </CardContent>

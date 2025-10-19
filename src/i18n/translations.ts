@@ -191,7 +191,6 @@ export const translations = {
     cyberhubBootcamp: "CyberHub Bootcamp",
     
     // Leaderboard Panel
-    globalRank: "Global Rank",
     countryRank: "Country Rank",
     topPerformers: "Top Performers",
     yourRank: "Your Rank",
@@ -200,19 +199,43 @@ export const translations = {
     xpProgress: "XP Progress",
     nextLevelIn: "Next level in",
     xp: "XP",
-    xpGrowth: "XP Growth",
-    recentAchievements: "Recent Achievements",
-    recentUnlocks: "Recent Unlocks",
-    unlockedRecently: "Unlocked recently",
-    allBadges: "All Badges",
-    unlocked: "Unlocked",
     start: "Start",
     now: "Now",
+    xpGrowth: "XP Growth",
+    recentUnlocks: "Recent Unlocks",
+    unlockedRecently: "Unlocked recently",
+    
+    // Badge Notification
+    badgeUnlocked: "Badge Unlocked!",
+    securityAnalyst: "Security Analyst",
+    risingLearner: "Rising Learner",
+    keepGoing: "Keep going to unlock more achievements!",
+    
+    // Ranking
+    yourRanking: "Your Ranking",
+    globalRank: "Global Rank",
+    topPercent: "Top {percent}%",
+    aheadOfLearners: "You're ahead of {count} learners",
+    performanceComparison: "Performance Comparison",
+    yourScore: "Your Score",
+    countryAverage: "Country Average",
+    peerAverage: "Peer Average",
+    globalAverage: "Global Average",
+    
+    // User Profile
+    policyStrategist: "Policy Strategist",
+    
+    // Learning Path Actions
+    exploreAdvanced: "Explore advanced scenarios",
+    contributeOpenSource: "Contribute to open-source security",
+    mentorJuniors: "Mentor junior learners",
     
     // Export Panel
+    exportDescription: "Download your progress report or share your achievements with others.",
+    shareProgress: "Share Progress",
+    downloadPDF: "Download PDF",
     exportTitle: "Export Your Results",
     exportSubtitle: "Share your achievements",
-    downloadPDF: "Download PDF",
     downloadImage: "Download Image",
     shareLink: "Share Link",
     
@@ -268,14 +291,11 @@ export const translations = {
     keepGoing: "Keep going! 🎯",
     stayFocused: "Stay focused! 📚",
     
-    // Badge Unlock
-    badgeUnlocked: "Badge Unlocked!",
+    // Badge Unlock (legacy)
     keepGoingMessage: "Keep going to unlock more achievements!",
     xpEarned: "XP Earned",
     xpMaster: "XP Master",
     cyberExpert: "Cyber Expert",
-    securityAnalyst: "Security Analyst",
-    risingLearner: "Rising Learner",
     
     // Skill Tree
     learningRoadmap: "Learning Roadmap",
@@ -685,9 +705,40 @@ export const translations = {
     xpProgress: "XP edasiminek",
     nextLevelIn: "Järgmine tase",
     xp: "XP",
-    recentAchievements: "Hiljutised saavutused",
-    allBadges: "Kõik märgid",
-    unlocked: "Avatud",
+    start: "Algus",
+    now: "Praegu",
+    xpGrowth: "XP Kasv",
+    recentUnlocks: "Hiljutised avamised",
+    unlockedRecently: "Hiljuti avatud",
+    
+    // Badge Notification
+    badgeUnlocked: "Märk avatud!",
+    securityAnalyst: "Turbeanalüütik",
+    risingLearner: "Algaja õppija",
+    keepGoing: "Jätka, et avada rohkem saavutusi!",
+    
+    // Ranking
+    yourRanking: "Sinu edetabelikoht",
+    globalRank: "Globaalne koht",
+    topPercent: "Tipus {percent}%",
+    aheadOfLearners: "Oled ees {count} õppijast",
+    performanceComparison: "Tulemuste võrdlus",
+    yourScore: "Sinu tulemus",
+    countryAverage: "Riigi keskmine",
+    peerAverage: "Eakaaslaste keskmine",
+    globalAverage: "Globaalne keskmine",
+    
+    // User Profile
+    policyStrategist: "Poliitikastrateeg",
+    
+    // Learning Path Actions
+    exploreAdvanced: "Uuri täiendavaid stsenaariumeid",
+    contributeOpenSource: "Aita kaasa avatud lähtekoodiga turvale",
+    mentorJuniors: "Juhenda nooremaid õppijaid",
+    
+    // Export Panel
+    exportDescription: "Laadi oma edenemisaruanne alla või jaga oma saavutusi teistega.",
+    shareProgress: "Jaga edenemist",
     
     // Export Panel
     exportTitle: "Ekspordi oma tulemused",
@@ -998,13 +1049,6 @@ export const translations = {
     vulnerabilityTesting: "Haavatavuse testimine",
     securityFrameworks: "Turvalisuse raamistikud",
     
-    // Gamification Additional
-    xpGrowth: "XP kasv",
-    recentUnlocks: "Hiljutised avastused",
-    unlockedRecently: "Hiljuti avatud",
-    start: "Algus",
-    now: "Praegu",
-    
     // Learning Resources
     cyberHygieneFundamentals: "Küberhügieeni põhitõed",
     networkSecurityFundamentals: "Võrguturbe põhitõed",
@@ -1160,6 +1204,36 @@ export const translations = {
     xpProgress: "XP előrehaladás",
     nextLevelIn: "Következő szint",
     xp: "XP",
+    start: "Kezdés",
+    now: "Most",
+    xpGrowth: "XP Növekedés",
+    recentUnlocks: "Legutóbbi feloldások",
+    unlockedRecently: "Nemrég feloldva",
+    
+    // Badge Notification
+    badgeUnlocked: "Jelvény megszerezve!",
+    securityAnalyst: "Biztonsági Elemző",
+    risingLearner: "Újonc Tanuló",
+    keepGoing: "Folytasd, hogy több eredményt érj el!",
+    
+    // Ranking
+    yourRanking: "Ranglistád",
+    globalRank: "Globális rang",
+    topPercent: "Top {percent}%",
+    aheadOfLearners: "{count} tanuló előtt vagy",
+    performanceComparison: "Teljesítmény összehasonlítás",
+    yourScore: "Saját pontszám",
+    countryAverage: "Országos átlag",
+    peerAverage: "Társ átlag",
+    globalAverage: "Globális átlag",
+    
+    // User Profile
+    policyStrategist: "Politika Stratéga",
+    
+    // Learning Path Actions
+    exploreAdvanced: "Fedezz fel haladó forgatókönyveket",
+    contributeOpenSource: "Járulj hozzá a nyílt forráskódú biztonsághoz",
+    mentorJuniors: "Oktass junior kollégákat",
     recentAchievements: "Legutóbbi eredmények",
     allBadges: "Összes jelvény",
     unlocked: "Feloldva",
@@ -1634,6 +1708,36 @@ export const translations = {
     xpProgress: "XP pažanga",
     nextLevelIn: "Kitas lygis",
     xp: "XP",
+    start: "Pradžia",
+    now: "Dabar",
+    xpGrowth: "XP Augimas",
+    recentUnlocks: "Neseniai atrakinti",
+    unlockedRecently: "Neseniai atrakinta",
+    
+    // Badge Notification
+    badgeUnlocked: "Ženklelis atblokuotas!",
+    securityAnalyst: "Saugumo analitikas",
+    risingLearner: "Kylanti besimokantysis",
+    keepGoing: "Tęskite, kad atrakintumėte daugiau pasiekimų!",
+    
+    // Ranking
+    yourRanking: "Jūsų reitingas",
+    globalRank: "Pasaulinis reitingas",
+    topPercent: "Viršuje {percent}%",
+    aheadOfLearners: "Esate priekyje {count} besimokančiųjų",
+    performanceComparison: "Rezultatų palyginimas",
+    yourScore: "Jūsų rezultatas",
+    countryAverage: "Šalies vidurkis",
+    peerAverage: "Bendraamžių vidurkis",
+    globalAverage: "Pasaulinis vidurkis",
+    
+    // User Profile
+    policyStrategist: "Politikos strategas",
+    
+    // Learning Path Actions
+    exploreAdvanced: "Ištirti pažangius scenarijus",
+    contributeOpenSource: "Prisidėti prie atvirojo kodo saugumo",
+    mentorJuniors: "Mentoriauti jaunesnius besimokančiuosius",
     recentAchievements: "Naujausi pasiekimai",
     allBadges: "Visi ženkleliai",
     unlocked: "Atrakinta",
@@ -2108,6 +2212,36 @@ export const translations = {
     xpProgress: "Postęp XP",
     nextLevelIn: "Następny poziom w",
     xp: "XP",
+    start: "Start",
+    now: "Teraz",
+    xpGrowth: "Wzrost XP",
+    recentUnlocks: "Ostatnie odblokowania",
+    unlockedRecently: "Niedawno odblokowane",
+    
+    // Badge Notification
+    badgeUnlocked: "Odznaka odblokowana!",
+    securityAnalyst: "Analityk bezpieczeństwa",
+    risingLearner: "Rozwijający się uczeń",
+    keepGoing: "Kontynuuj, aby odblokować więcej osiągnięć!",
+    
+    // Ranking
+    yourRanking: "Twoja pozycja",
+    globalRank: "Ranking globalny",
+    topPercent: "Top {percent}%",
+    aheadOfLearners: "Jesteś przed {count} uczniami",
+    performanceComparison: "Porównanie wyników",
+    yourScore: "Twój wynik",
+    countryAverage: "Średnia krajowa",
+    peerAverage: "Średnia rówieśników",
+    globalAverage: "Średnia globalna",
+    
+    // User Profile
+    policyStrategist: "Strateg polityczny",
+    
+    // Learning Path Actions
+    exploreAdvanced: "Poznaj zaawansowane scenariusze",
+    contributeOpenSource: "Przyczyń się do bezpieczeństwa open source",
+    mentorJuniors: "Mentoringuj młodszych uczniów",
     recentAchievements: "Ostatnie osiągnięcia",
     allBadges: "Wszystkie odznaki",
     unlocked: "Odblokowane",
@@ -2582,6 +2716,36 @@ export const translations = {
     xpProgress: "Progresso XP",
     nextLevelIn: "Próximo nível em",
     xp: "XP",
+    start: "Início",
+    now: "Agora",
+    xpGrowth: "Crescimento XP",
+    recentUnlocks: "Desbloqueios recentes",
+    unlockedRecently: "Desbloqueado recentemente",
+    
+    // Badge Notification
+    badgeUnlocked: "Medalha desbloqueada!",
+    securityAnalyst: "Analista de segurança",
+    risingLearner: "Aprendiz em ascensão",
+    keepGoing: "Continue para desbloquear mais conquistas!",
+    
+    // Ranking
+    yourRanking: "Sua classificação",
+    globalRank: "Classificação global",
+    topPercent: "Top {percent}%",
+    aheadOfLearners: "Você está à frente de {count} aprendizes",
+    performanceComparison: "Comparação de desempenho",
+    yourScore: "Sua pontuação",
+    countryAverage: "Média do país",
+    peerAverage: "Média dos colegas",
+    globalAverage: "Média global",
+    
+    // User Profile
+    policyStrategist: "Estrategista de políticas",
+    
+    // Learning Path Actions
+    exploreAdvanced: "Explorar cenários avançados",
+    contributeOpenSource: "Contribuir para segurança de código aberto",
+    mentorJuniors: "Orientar aprendizes iniciantes",
     recentAchievements: "Conquistas recentes",
     allBadges: "Todos os distintivos",
     unlocked: "Desbloqueado",
@@ -2804,6 +2968,36 @@ export const translations = {
     xpProgress: "XP pokrok",
     nextLevelIn: "Ďalšia úroveň v",
     xp: "XP",
+    start: "Začiatok",
+    now: "Teraz",
+    xpGrowth: "XP Rast",
+    recentUnlocks: "Nedávne odomknutia",
+    unlockedRecently: "Nedávno odomknuté",
+    
+    // Badge Notification
+    badgeUnlocked: "Odznak odomknutý!",
+    securityAnalyst: "Bezpečnostný analytik",
+    risingLearner: "Začínajúci študent",
+    keepGoing: "Pokračujte, aby ste odomkli viac úspechov!",
+    
+    // Ranking
+    yourRanking: "Vaše hodnotenie",
+    globalRank: "Globálne hodnotenie",
+    topPercent: "Top {percent}%",
+    aheadOfLearners: "Ste pred {count} študentmi",
+    performanceComparison: "Porovnanie výkonu",
+    yourScore: "Vaše skóre",
+    countryAverage: "Krajský priemer",
+    peerAverage: "Priemer rovesníkov",
+    globalAverage: "Globálny priemer",
+    
+    // User Profile
+    policyStrategist: "Stratég politiky",
+    
+    // Learning Path Actions
+    exploreAdvanced: "Preskúmajte pokročilé scenáre",
+    contributeOpenSource: "Prispejte k bezpečnosti open source",
+    mentorJuniors: "Mentorujte juniorských študentov",
     recentAchievements: "Najnovšie úspechy",
     allBadges: "Všetky odznaky",
     unlocked: "Odomknuté",
@@ -3026,6 +3220,36 @@ export const translations = {
     xpProgress: "XP napredek",
     nextLevelIn: "Naslednja raven v",
     xp: "XP",
+    start: "Začetek",
+    now: "Zdaj",
+    xpGrowth: "XP Rast",
+    recentUnlocks: "Nedavno odklenitve",
+    unlockedRecently: "Nedavno odklenjeno",
+    
+    // Badge Notification
+    badgeUnlocked: "Značka odklenjena!",
+    securityAnalyst: "Varnostni analitik",
+    risingLearner: "Napredujoč učenec",
+    keepGoing: "Nadaljujte, da odklenete več dosežkov!",
+    
+    // Ranking
+    yourRanking: "Vaša uvrstitev",
+    globalRank: "Globalna uvrstitev",
+    topPercent: "Top {percent}%",
+    aheadOfLearners: "Ste pred {count} učenci",
+    performanceComparison: "Primerjava uspešnosti",
+    yourScore: "Vaš rezultat",
+    countryAverage: "Državno povprečje",
+    peerAverage: "Povprečje vrstnikov",
+    globalAverage: "Globalno povprečje",
+    
+    // User Profile
+    policyStrategist: "Strateg politike",
+    
+    // Learning Path Actions
+    exploreAdvanced: "Raziščite napredne scenarije",
+    contributeOpenSource: "Prispevajte k odprtokodni varnosti",
+    mentorJuniors: "Mentorite mlajše učence",
     recentAchievements: "Nedavni dosežki",
     allBadges: "Vse značke",
     unlocked: "Odklenjen",

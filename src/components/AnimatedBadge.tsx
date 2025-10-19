@@ -3,6 +3,7 @@ import { Award, Sparkles } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface AnimatedBadgeProps {
   badge: string;
@@ -38,6 +39,8 @@ interface BadgeUnlockProps {
 }
 
 export const BadgeUnlock = ({ badge, onClose }: BadgeUnlockProps) => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     const timer = setTimeout(onClose, 3000);
     return () => clearTimeout(timer);
@@ -51,10 +54,10 @@ export const BadgeUnlock = ({ badge, onClose }: BadgeUnlockProps) => {
             <Award className="w-24 h-24 text-primary animate-pulse" />
             <Sparkles className="w-6 h-6 text-warning absolute -top-2 -right-2 animate-spin" />
           </div>
-          <h2 className="text-2xl font-bold mb-2">Badge Unlocked!</h2>
+          <h2 className="text-2xl font-bold mb-2">{t('badgeUnlocked')}</h2>
           <p className="text-lg text-muted-foreground">{badge}</p>
           <div className="mt-6 text-sm text-muted-foreground">
-            Keep going to unlock more achievements!
+            {t('keepGoing')}
           </div>
         </CardContent>
       </Card>
